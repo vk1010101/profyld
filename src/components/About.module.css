@@ -1,0 +1,389 @@
+.about {
+    padding: 8rem 0;
+    background-color: var(--bg-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.divider {
+    width: 60px;
+    height: 4px;
+    background: var(--accent-gradient);
+    margin: 1rem auto;
+    border-radius: 2px;
+}
+
+.contentWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* Image Column */
+.imageColumn {
+    position: sticky;
+    top: 100px;
+}
+
+.imageFrame {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profileImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.imageFrame:hover .profileImage {
+    transform: scale(1.05);
+}
+
+.contactInfo {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 2rem;
+    background: var(--surface-color);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+}
+
+.contactInfo h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.contactInfo p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.downloadBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--accent-gradient);
+    color: var(--bg-color);
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.downloadBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+}
+
+/* Tabs Column */
+.tabsColumn {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 24px;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+}
+
+.tabsHeader {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.tabsHeader::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+.tabButton {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.tabButton:hover {
+    color: var(--text-primary);
+}
+
+.activeTab {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.activeIndicator {
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-color);
+}
+
+.tabContent h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.tabContent p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+/* Specific Tab Styles */
+.languages {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.langTag {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.timelineItem {
+    position: relative;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--border-color);
+}
+
+.timelineItem::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-color);
+    border-radius: 50%;
+}
+
+.timelineDate {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.timelineItem h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+}
+
+.location {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+.bulletList {
+    list-style-type: disc;
+    padding-left: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.bulletList li {
+    margin-bottom: 0.5rem;
+}
+
+.subSection {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.subSection h5 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.visitGrid,
+.skillGrid,
+.interestGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.visitGrid span,
+.skillPill,
+.interestCard {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.visitGrid span:hover,
+.skillPill:hover,
+.interestCard:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.skillCategory {
+    margin-bottom: 2rem;
+}
+
+.workshopList,
+.simpleList {
+    list-style: none;
+    padding: 0;
+}
+
+.workshopList li {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.workshopList li:last-child {
+    border-bottom: none;
+}
+
+.workshopList strong {
+    color: var(--accent-color);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.simpleList li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.simpleList li::before {
+    content: '•';
+    color: var(--accent-color);
+}
+
+.educationCard {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.eduYear {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--accent-color);
+    color: var(--bg-color);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.institution {
+    display: block;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.specialization {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.educationRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.eduMini {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .contentWrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .imageColumn {
+        position: static;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .tabsHeader {
+        padding-bottom: 0.5rem;
+    }
+
+    .tabButton span {
+        display: none;
+    }
+
+    .tabButton {
+        padding: 0.8rem;
+    }
+
+    .educationRow {
+        grid-template-columns: 1fr;
+    }
+}
