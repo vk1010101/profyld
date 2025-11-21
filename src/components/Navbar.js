@@ -24,7 +24,7 @@ const Navbar = () => {
             <div className="container">
                 <div className={styles.navContent}>
                     <Link href="/" className={styles.logo}>
-                        SHIRIKA
+                        SHIRIKA KOHLI
                     </Link>
 
                     <div className={`${styles.navLinks} ${isOpen ? styles.open : ""}`}>

@@ -23,7 +23,7 @@ const Hero = () => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className={styles.title}
                     >
-                        SHIRIKA
+                        SHIRIKA KOHLI
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0 }}

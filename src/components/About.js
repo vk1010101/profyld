@@ -17,6 +17,7 @@ const About = () => {
         { id: "interests", label: "Interests", icon: Palette },
     ];
 
+
     const content = {
         profile: (
             <div className={styles.tabContent}>
@@ -181,7 +182,12 @@ const About = () => {
                         <div className={styles.contactInfo}>
                             <h3>Shirika Kohli</h3>
                             <p>Leather Design Student</p>
-                            <a href="/assets/CV Shirika .pdf" download className={styles.downloadBtn}>
+                            <a 
+                                href="/assets/CV_Shirika.pdf" 
+                                download="CV_Shirika.pdf" 
+                                className={styles.downloadBtn}
+                                style={{ textDecoration: 'none', display: 'inline-flex' }}
+                            >
                                 <Download size={18} /> Download CV
                             </a>
                         </div>
