@@ -55,6 +55,10 @@
     cursor: pointer;
 }
 
+.closeBtn {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .menuBtn {
         display: block;
@@ -76,5 +80,23 @@
 
     .navLinks.open {
         right: 0;
+    }
+
+    .closeBtn {
+        display: block;
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: none;
+        border: none;
+        color: var(--foreground);
+        cursor: pointer;
+        padding: 0.5rem;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    }
+
+    .closeBtn:hover {
+        opacity: 1;
     }
 }

@@ -28,6 +28,9 @@ const Navbar = () => {
                     </Link>
 
                     <div className={`${styles.navLinks} ${isOpen ? styles.open : ""}`}>
+                        <button className={styles.closeBtn} onClick={() => setIsOpen(false)}>
+                            <X size={24} />
+                        </button>
                         <Link href="#about" onClick={() => setIsOpen(false)}>About</Link>
                         <Link href="#portfolio" onClick={() => setIsOpen(false)}>Portfolio</Link>
                         <Link href="#artwork" onClick={() => setIsOpen(false)}>Artwork</Link>

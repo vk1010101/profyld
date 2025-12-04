@@ -19,6 +19,8 @@ const projects = [
             "/assets/portfolio/PORTFOLIO (1)_pages-to-jpg-0006.jpg",
             "/assets/portfolio/PORTFOLIO (1)_pages-to-jpg-0007.jpg",
             "/assets/portfolio/PORTFOLIO (1)_pages-to-jpg-0008.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0009.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0010.jpg",
         ]
     },
     {
@@ -64,17 +66,37 @@ const projects = [
         ]
     },
     {
+        id: "strata-vessel",
+        title: "STRATA VESSEL",
+        number: "05",
+        cover: "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0030.jpg",
+        images: [
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0030.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0031.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0032.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0033.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0034.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0035.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0036.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0037.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0038.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0039.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0040.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0041.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0042.jpg",
+        ]
+    },
+    {
         id: "misc",
         title: "MISCELLANEOUS",
-        number: "05",
-        cover: "/assets/portfolio/PORTFOLIO (1)_pages-to-jpg-0027.jpg",
+        number: "06",
+        cover: "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0043.jpg",
         images: [
-            "/assets/portfolio/PORTFOLIO (1)_pages-to-jpg-0027.jpg",
-            "/assets/portfolio/PORTFOLIO (1)_pages-to-jpg-0028.jpg",
-            "/assets/portfolio/WhatsApp Image 2025-11-20 at 9.42.01 PM.jpeg",
-            "/assets/portfolio/WhatsApp Image 2025-11-20 at 9.44.24 PM.jpeg",
-            "/assets/portfolio/WhatsApp Image 2025-11-20 at 9.45.21 PM.jpeg",
-            "/assets/portfolio/WhatsApp Image 2025-11-20 at 9.45.37 PM.jpeg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0043.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0044.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0045.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0046.jpg",
+            "/assets/portfolio/PORTFOLIO (4)_pages-to-jpg-0047.jpg",
         ]
     }
 ];

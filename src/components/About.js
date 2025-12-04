@@ -37,13 +37,19 @@ const About = () => {
                 <h3>Experience</h3>
                 <div className={styles.timeline}>
                     <div className={styles.timelineItem}>
-                        <div className={styles.timelineDate}>June 2024</div>
+                        <div className={styles.timelineDate}>June 2025 - August 2025</div>
+                        <h4>Summer Internship</h4>
+                        <span className={styles.location}>Bharatiya International Limited, Chennai, Tamil Nadu</span>
+                        <p>Worked on leather product development including design research, material selection, tech packs, and sampling support in a large-scale export manufacturing setup.</p>
+                    </div>
+                    <div className={styles.timelineItem}>
+                        <div className={styles.timelineDate}>June 2024 - 10 days</div>
                         <h4>Craft Cluster Documentation</h4>
                         <span className={styles.location}>Navakuruchi, Tamil Nadu</span>
                         <p>Visited and studied traditional bamboo craft as part of a DC Handicrafts & NIFT collaboration; documented local techniques, tools, and artisan practices for design research and cultural preservation.</p>
                     </div>
                     <div className={styles.timelineItem}>
-                        <div className={styles.timelineDate}>June 2024</div>
+                        <div className={styles.timelineDate}>June 2024 - 15 days</div>
                         <h4>Tannery Training</h4>
                         <span className={styles.location}>Shalimar Tanning Company</span>
                         <p>Undertook hands-on training to understand the complete leather processing cycle—from raw hide to finished leather—gaining technical knowledge of tanning, finishing, and quality control methods.</p>
@@ -55,20 +61,7 @@ const About = () => {
                             <li>Served as a judge for a face painting competition at IIT Madras</li>
                             <li>Painted custom denim jackets on commission</li>
                             <li>Created digital artwork for Mandonna, a research organization</li>
-                            <li>Modeled for a hair extension brand - Hair tales</li>
                         </ul>
-                    </div>
-                </div>
-                <div className={styles.subSection}>
-                    <h5>Industry Visits</h5>
-                    <div className={styles.visitGrid}>
-                        <span>Potissimus Arrow Shoes</span>
-                        <span>Calsea Footwear</span>
-                        <span>CDS Soles</span>
-                        <span>Orion Commerx</span>
-                        <span>KH Exports</span>
-                        <span>Sanghvi Sole Accessories</span>
-                        <span>Prara Leathers</span>
                     </div>
                 </div>
             </div>
@@ -78,9 +71,29 @@ const About = () => {
                 <h3>Skills</h3>
                 <div className={styles.skillCategory}>
                     <h5>Software</h5>
-                    <div className={styles.skillGrid}>
-                        {["Clo 3D", "Rhino", "Adobe Illustrator", "Adobe Indesign", "Adobe Photoshop", "MS Office", "Procreate", "Autodesk Sketchbook", "Shoemaster"].map(skill => (
-                            <span key={skill} className={styles.skillPill}>{skill}</span>
+                    <div className={styles.skillList}>
+                        {[
+                            { name: "Clo 3D", level: 70 },
+                            { name: "Rhino", level: 70 },
+                            { name: "Adobe Illustrator", level: 30 },
+                            { name: "Adobe Indesign", level: 20 },
+                            { name: "Adobe Photoshop", level: 35 },
+                            { name: "MS Office", level: 95 },
+                            { name: "Procreate", level: 70 },
+                            { name: "Autodesk Sketchbook", level: 70 },
+                            { name: "Shoemaster", level: 70 }
+                        ].map(skill => (
+                            <div key={skill.name} className={styles.skillItem}>
+                                <span className={styles.skillName}>{skill.name}</span>
+                                <div className={styles.skillBar}>
+                                    <div
+                                        className={styles.skillLevel}
+                                        style={{ width: `${skill.level}%` }}
+                                    >
+                                        <div className={styles.skillKnob}></div>
+                                    </div>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -182,9 +195,9 @@ const About = () => {
                         <div className={styles.contactInfo}>
                             <h3>Shirika Kohli</h3>
                             <p>Leather Design Student</p>
-                            <a 
-                                href="/assets/CV_Shirika.pdf" 
-                                download="CV_Shirika.pdf" 
+                            <a
+                                href="/assets/shirikaCV-ld.pdf"
+                                download="shirikaCV-ld.pdf"
                                 className={styles.downloadBtn}
                                 style={{ textDecoration: 'none', display: 'inline-flex' }}
                             >

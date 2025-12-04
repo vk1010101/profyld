@@ -1,15 +1,17 @@
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    padding: 8rem 0 6rem;
     background-image: url('/assets/portfolio/PORTFOLIO (1)_pages-to-jpg-0001.jpg');
     /* Using first page as hero bg */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    overflow: hidden;
 }
 
 .overlay {
@@ -27,31 +29,34 @@
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
+    padding: 0 1.5rem;
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 0.3rem;
     color: var(--accent);
     margin-bottom: 1rem;
 }
 
 .title {
-    font-size: 5rem;
+    font-size: clamp(2.8rem, 11vw, 5rem);
     font-weight: 700;
     margin-bottom: 1.5rem;
-    letter-spacing: -2px;
-    line-height: 1;
+    letter-spacing: -0.08em;
+    line-height: 1.05;
+    word-break: break-word;
 }
 
 .description {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3.5vw, 1.2rem);
     color: #ccc;
     margin-bottom: 3rem;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.7;
 }
 
 .cta {
@@ -61,8 +66,8 @@
     border: 1px solid var(--foreground);
     color: var(--foreground);
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.9rem;
+    letter-spacing: 0.18rem;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
 }
 
@@ -72,8 +77,50 @@
     color: #000;
 }
 
+@media (max-width: 1024px) {
+    .hero {
+        padding: 7rem 0 5rem;
+        background-position: center top;
+    }
+}
+
 @media (max-width: 768px) {
-    .title {
-        font-size: 3rem;
+    .hero {
+        min-height: auto;
+        padding: 6rem 0 4rem;
+        background-attachment: scroll;
+    }
+
+    .content {
+        padding: 0 1.25rem;
+    }
+
+    .subtitle {
+        letter-spacing: 0.2rem;
+    }
+
+    .cta {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 5.5rem 0 3.5rem;
+    }
+
+    .content {
+        padding: 0 1rem;
+    }
+
+    .description {
+        margin-bottom: 2.5rem;
+    }
+
+    .cta {
+        padding: 0.9rem 1.5rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.1rem;
     }
 }

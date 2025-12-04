@@ -98,6 +98,7 @@
     padding: 2rem;
     border: 1px solid var(--border-color);
     backdrop-filter: blur(10px);
+    min-width: 0;
 }
 
 .tabsHeader {
@@ -108,12 +109,10 @@
     padding-bottom: 1rem;
     overflow-x: auto;
     scrollbar-width: none;
-    /* Firefox */
 }
 
 .tabsHeader::-webkit-scrollbar {
     display: none;
-    /* Chrome/Safari */
 }
 
 .tabButton {
@@ -154,6 +153,7 @@
     font-size: 2rem;
     margin-bottom: 1.5rem;
     color: var(--text-primary);
+    word-break: break-word;
 }
 
 .tabContent p {
@@ -167,6 +167,7 @@
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
+    flex-wrap: wrap;
 }
 
 .langTag {
@@ -269,19 +270,6 @@
 .skillPill:hover,
 .interestCard:hover {
     background: rgba(212, 175, 55, 0.1);
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-    transform: translateY(-2px);
-}
-
-.skillCategory {
-    margin-bottom: 2rem;
-}
-
-.workshopList,
-.simpleList {
-    list-style: none;
-    padding: 0;
 }
 
 .workshopList li {
@@ -356,6 +344,51 @@
     border: 1px solid var(--border-color);
 }
 
+.skillCategory {
+    margin-bottom: 3rem;
+}
+
+/* Skills Slider */
+.skillList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.skillItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.skillName {
+    flex: 0 0 160px;
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.skillBar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    position: relative;
+}
+
+.skillLevel {
+    height: 100%;
+    background: var(--accent-gradient);
+    border-radius: 2px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.skillKnob {
+    display: none;
+}
+
 /* Responsive Design */
 @media (max-width: 968px) {
     .contentWrapper {
@@ -368,22 +401,78 @@
         max-width: 400px;
         margin: 0 auto;
     }
+
+    .tabsColumn {
+        padding: 1.75rem;
+    }
 }
 
-@media (max-width: 600px) {
-    .tabsHeader {
-        padding-bottom: 0.5rem;
+@media (max-width: 768px) {
+    .about {
+        padding: 6rem 0;
     }
 
-    .tabButton span {
-        display: none;
+    .tabsColumn {
+        padding: 1.5rem;
+    }
+
+    .tabContent h3 {
+        font-size: 1.6rem;
+    }
+
+    .tabContent p {
+        font-size: 0.95rem;
+    }
+
+    .contactInfo {
+        padding: 1.5rem;
+    }
+
+    .contactInfo h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about {
+        padding: 5rem 0;
+    }
+
+    .contentWrapper {
+        gap: 2.5rem;
+    }
+
+    .tabsColumn {
+        padding: 1.25rem;
     }
 
     .tabButton {
-        padding: 0.8rem;
+        font-size: 0.9rem;
+        padding: 0.7rem 1rem;
     }
 
-    .educationRow {
-        grid-template-columns: 1fr;
+    .tabContent h3 {
+        font-size: 1.4rem;
+    }
+
+    .tabContent p {
+        line-height: 1.6;
+    }
+
+    .timelineItem {
+        padding-left: 1rem;
+    }
+
+    .timelineItem h4 {
+        font-size: 1.05rem;
+    }
+
+    .contactInfo h3 {
+        font-size: 1.35rem;
+    }
+
+    .downloadBtn {
+        width: 100%;
+        justify-content: center;
     }
 }
