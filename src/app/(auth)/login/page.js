@@ -81,7 +81,7 @@ export default function LoginPage() {
     <div className={styles.authCard}>
       <div className={styles.authHeader}>
         <div className={styles.logo}>profyld.</div>
-        <h1 className={styles.title}>Welcome Back</h1>
+        <h1 className={styles.title}>Sign In</h1>
         <p className={styles.subtitle}>Sign in to manage your portfolio</p>
       </div>
 
