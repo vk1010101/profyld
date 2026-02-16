@@ -263,3 +263,31 @@
 .mobileNotice svg {
     flex-shrink: 0;
 }
+
+/* ===== Resize Handle ===== */
+.resizeHandle {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
+    width: 40px;
+    height: 20px;
+    background: #1a1a2e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: ns-resize;
+    z-index: 100;
+    color: #888;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.resizeHandle:hover {
+    background: #2a2a4e;
+    color: #fff;
+    border-color: rgba(192, 168, 120, 0.5);
+    transform: translateX(-50%) translateY(50%) scale(1.1);
+}

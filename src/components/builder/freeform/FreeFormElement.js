@@ -87,8 +87,9 @@ const FreeFormElement = ({
                 left: safeVal(position.x),
                 top: safeVal(position.y),
                 width: safeVal(position.w, 'auto'),
+                width: safeVal(position.w, 'auto'),
                 height: safeVal(position.h, 'auto'),
-                zIndex: isSelected ? 30 : 10,
+                zIndex: isSelected ? 100 : safeVal(position.z, 10), // Boost if selected, else use stored Z or default
                 opacity: position.hidden ? 0.3 : 1, // Dim if hidden
                 filter: position.hidden ? 'grayscale(100%)' : 'none',
             }}

@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 
 // Using Gemini 2.5 Flash as requested (matching CV parser)
-const MODEL_NAME = "gemini-2.5-flash";
+const MODEL_NAME = "gemini-2.0-flash";
 
 export async function POST(req) {
     try {
@@ -81,7 +81,7 @@ export async function POST(req) {
            {
              "type": "html",
              "config": {
-               "html": "<section class='...'>...</section>" (Tailwind classes NOT supported, use inline styles or standard CSS)
+               "html": "<section class='...'>...</section>" (CRITICAL: USE TAILWIND CSS CLASSES for styling)
              }
            }
 

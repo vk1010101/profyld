@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import styles from './freeform.module.css';
 import { useBuilderStore } from '../useBuilderStore';
-import { RotateCcw, Smartphone, Check } from 'lucide-react';
+import { RotateCcw, Smartphone, Check, ArrowUp, ArrowDown, GripHorizontal } from 'lucide-react';
 import { MoveableController } from './MoveableController';
 
 /**
@@ -159,7 +159,10 @@ const FreeFormSection = ({
         <div
             ref={sectionRef}
             className={`${styles.freeFormSection} ${styles.freeFormActive} ${className}`}
-            style={sectionHeight ? { minHeight: sectionHeight } : undefined}
+            style={{
+                minHeight: sectionHeight ? `${sectionHeight}px` : '400px',
+                height: sectionHeight ? `${sectionHeight}px` : 'auto' // Enforce specific height if set
+            }}
             onClick={handleSectionClick}
             data-view-mode={viewMode}
         >
@@ -175,6 +178,33 @@ const FreeFormSection = ({
                         {showSyncSuccess ? <Check size={12} /> : <Smartphone size={12} />}
                         {showSyncSuccess ? 'Synced!' : 'Sync to Mobile'}
                     </button>
+                )}
+
+                {/* Layer Controls */}
+                {selectedElementId && (
+                    <>
+                        <div className={styles.toolbarDivider} />
+                        <button
+                            className={styles.resetBtn}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                useBuilderStore.getState().bringForward(blockId, selectedElementId);
+                            }}
+                            title="Bring Forward"
+                        >
+                            <ArrowUp size={12} />
+                        </button>
+                        <button
+                            className={styles.resetBtn}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                useBuilderStore.getState().sendBackward(blockId, selectedElementId);
+                            }}
+                            title="Send Backward"
+                        >
+                            <ArrowDown size={12} />
+                        </button>
+                    </>
                 )}
 
                 {/* Reset Buttons */}
@@ -211,11 +241,45 @@ const FreeFormSection = ({
             }
             {/* Only Render Moveable Controller if FreeForm is Enabled */}
             {freeFormEnabled && (
-                <MoveableController
-                    blockId={blockId}
-                    containerRef={sectionRef}
-                    zoom={1}
-                />
+                <>
+                    <MoveableController
+                        blockId={blockId}
+                        containerRef={sectionRef}
+                        zoom={1}
+                    />
+
+                    {/* Manual Resize Handle */}
+                    <div
+                        className={styles.resizeHandle}
+                        onMouseDown={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+
+                            const startY = e.clientY;
+                            const startHeight = sectionRef.current.offsetHeight;
+
+                            const handleMouseMove = (moveEvent) => {
+                                const deltaY = moveEvent.clientY - startY;
+                                const newHeight = Math.max(100, startHeight + deltaY);
+                                sectionRef.current.style.minHeight = `${newHeight}px`;
+                            };
+
+                            const handleMouseUp = (upEvent) => {
+                                document.removeEventListener('mousemove', handleMouseMove);
+                                document.removeEventListener('mouseup', handleMouseUp);
+
+                                const finalDelta = upEvent.clientY - startY;
+                                const finalHeight = Math.max(100, startHeight + finalDelta);
+                                useBuilderStore.getState().updateBlockHeight(blockId, finalHeight, viewMode);
+                            };
+
+                            document.addEventListener('mousemove', handleMouseMove);
+                            document.addEventListener('mouseup', handleMouseUp);
+                        }}
+                    >
+                        <GripHorizontal size={16} />
+                    </div>
+                </>
             )}
         </div>
     );

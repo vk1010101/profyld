@@ -254,11 +254,13 @@
 /* Block Editor Panel */
 .editorPanel {
     width: 320px;
-    background: #0a0a0a;
-    border-left: 1px solid #1f1f1f;
+    background: rgba(10, 10, 12, 0.95);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     flex-direction: column;
     height: 100%;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .emptyEditor {
@@ -266,39 +268,46 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #444;
+    color: rgba(255, 255, 255, 0.3);
     font-size: 0.9rem;
     padding: 2rem;
     text-align: center;
+    font-weight: 300;
 }
 
 .panelHeader {
-    padding: 1rem;
-    border-bottom: 1px solid #1f1f1f;
+    padding: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
 }
 
 .panelHeader h3 {
     margin: 0;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #eee;
+    font-size: 1rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #fff, #bbb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.01em;
 }
 
 .closeBtn {
     background: transparent;
-    border: none;
-    color: #666;
+    border: 1px solid transparent;
+    color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
-    padding: 4px;
-    border-radius: 4px;
+    padding: 6px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
 }
 
 .closeBtn:hover {
-    background: #1f1f1f;
-    color: #eee;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .panelContent {
@@ -307,15 +316,32 @@
     padding: 1.5rem;
 }
 
+/* Scrollbar refinement */
+.panelContent::-webkit-scrollbar {
+    width: 6px;
+}
+
+.panelContent::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.panelContent::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.panelContent::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
 .legacyNotice {
-    background: #141f2d;
-    /* Slight blue tint */
-    border: 1px solid #1e2e42;
-    border-radius: 8px;
-    padding: 1rem;
-    color: #abc;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 12px;
+    padding: 1.25rem;
+    color: #c7d2fe;
     font-size: 0.9rem;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .infoBox {
@@ -323,6 +349,7 @@
     font-size: 0.8rem;
     opacity: 0.7;
     font-style: italic;
+    color: #a5b4fc;
 }
 
 /* Form Styles */
@@ -334,30 +361,49 @@
 
 .formField label {
     display: block;
-    font-size: 0.8rem;
-    color: #888;
-    margin-bottom: 0.5rem;
-    text-transform: capitalize;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .input,
 .textarea,
 .select {
     width: 100%;
-    background: #141414;
-    border: 1px solid #222;
-    border-radius: 6px;
-    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
     color: #eee;
     font-size: 0.9rem;
     outline: none;
-    transition: border-color 0.2s ease;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.input:hover,
+.textarea:hover,
+.select:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .input:focus,
 .textarea:focus,
 .select:focus {
     border-color: var(--accent-color);
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.15);
+}
+
+.select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
 }
 
 /* Save Bar */
@@ -461,6 +507,10 @@
     inset: 0;
     z-index: 9999;
     background: #050505;
+    /* Add a subtle background gradient so glassmorphism has texture to blur */
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(139, 115, 85, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(60, 60, 80, 0.08) 0%, transparent 40%);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -485,8 +535,9 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 16px;
-    height: 48px;
-    background: rgba(10, 10, 15, 0.95);
+    height: 52px;
+    /* Slightly taller */
+    background: rgba(8, 8, 10, 0.7);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(12px);
     flex-shrink: 0;
@@ -504,35 +555,29 @@
 .topBarSelect {
     appearance: none;
     -webkit-appearance: none;
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.8);
-    /* Match Return Btn: 6px vertical padding + font size adjustment */
-    padding: 6px 32px 6px 10px;
+    color: #eee;
+    padding: 8px 36px 8px 12px;
     border-radius: 8px;
-    /* Match returnBtn */
-    font-family: var(--font-body);
-    font-size: 12px;
-    /* Match returnBtn size */
+    font-family: 'Space Grotesk', sans-serif;
+    /* Tech Font */
+    font-size: 13px;
     font-weight: 500;
     outline: none;
     cursor: pointer;
     transition: all 0.2s ease;
-    height: 32px;
-    /* Explicit height to match button if needed */
+    height: 36px;
     display: flex;
     align-items: center;
-
-    /* Custom Chevron */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 8px center;
+    background-position: right 10px center;
 }
 
 .topBarSelect:hover {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 1);
 }
 
 .topBarSelect:focus {
@@ -541,7 +586,7 @@
 }
 
 .topBarSelect option {
-    background: #1a1a1a;
+    background: #111;
     color: #fff;
     padding: 8px;
 }
@@ -550,12 +595,13 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: transparent;
+    background: rgba(139, 115, 85, 0.1);
+    /* Subtle accent bg */
     border: 1px solid var(--accent-color);
     color: var(--accent-color);
-    padding: 7px 16px;
+    padding: 8px 18px;
     border-radius: 6px;
-    font-family: var(--font-body);
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
@@ -566,15 +612,17 @@
 }
 
 .viewLiveBtn:hover {
-    background: rgba(139, 115, 85, 0.1);
+    background: var(--accent-color);
+    /* Fill on hover */
+    color: #fff;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(139, 115, 85, 0.15);
+    box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3);
 }
 
 .viewportSwitcher {
     display: flex;
-    gap: 4px;
-    background: rgba(255, 255, 255, 0.03);
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.2);
     padding: 4px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -585,7 +633,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 6px 10px;
+    padding: 6px 12px;
     border-radius: 6px;
     background: transparent;
     color: rgba(255, 255, 255, 0.4);
@@ -595,45 +643,45 @@
 }
 
 .viewportBtn:hover {
-    color: rgba(255, 255, 255, 0.8);
+    color: #fff;
     background: rgba(255, 255, 255, 0.05);
 }
 
 .viewportBtn.active {
-    background: rgba(139, 115, 85, 0.15);
-    color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
 
 .returnBtn {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    background: rgba(255, 255, 255, 0.04);
+    gap: 8px;
+    padding: 8px 14px;
+    background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .returnBtn:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.9);
-    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
 }
-
-
 
 .fullscreenTitle {
     margin-left: 2rem;
     margin-right: auto;
-    font-size: 13px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.5);
-    letter-spacing: 0.03em;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
@@ -769,39 +817,200 @@
     background: #080808;
 }
 
-/* ---- Right Panel (on selection) ---- */
+/* Right Panel Toggle Button */
+.rightPanelToggleBtn {
+    position: absolute;
+    left: -44px;
+    /* Floating to the left of the panel */
+    top: 16px;
+    /* Near the top, not centered */
+    width: 32px;
+    height: 32px;
+    background: rgba(10, 10, 15, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    /* Clean rounded square */
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.rightPanelToggleBtn:hover {
+    color: #fff;
+    background: rgba(10, 10, 15, 0.9);
+    transform: translateX(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .rightPanelToggleBtn {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .rightPanelToggleBtn:hover {
+    color: #000;
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
 .fullscreenRightPanel {
     position: fixed;
-    top: 48px;
+    top: 52px;
+    /* Match Updated TopBar Height */
     right: 0;
     bottom: 0;
-    width: 320px;
     z-index: 150;
     transform: translateX(100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: none;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Smoother spring-like ease */
+    /* Allow visible overflow for the toggle button */
+    overflow: visible;
 }
 
-.fullscreenRightPanel.panelOpen {
+.panelOpen {
     transform: translateX(0);
-    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
 }
 
-/* ---- Light mode support ---- */
+/* ---- Theme Toggle ---- */
+.themeToggleBtn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.themeToggleBtn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ---- Light Mode Support ---- */
 [data-theme="light"] .fullscreenOverlay {
-    background: #f5f5f5;
+    background: #f8fafc;
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(139, 115, 85, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(200, 200, 220, 0.1) 0%, transparent 40%);
 }
 
 [data-theme="light"] .fullscreenTopBar {
-    background: rgba(255, 255, 255, 0.95);
-    border-bottom-color: rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.85);
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .fullscreenTitle {
+    color: rgba(0, 0, 0, 0.5);
 }
 
 [data-theme="light"] .returnBtn {
-    background: rgba(0, 0, 0, 0.03);
-    border-color: rgba(0, 0, 0, 0.1);
     color: rgba(0, 0, 0, 0.6);
+    border-color: rgba(0, 0, 0, 0.1);
 }
+
+[data-theme="light"] .returnBtn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #000;
+}
+
+[data-theme="light"] .editorPanel {
+    background: rgba(255, 255, 255, 0.8);
+    border-left-color: rgba(0, 0, 0, 0.06);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .panelHeader {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, transparent 100%);
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .panelHeader h3 {
+    background: linear-gradient(90deg, #333, #666);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .formField label {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .input,
+[data-theme="light"] .textarea,
+[data-theme="light"] .select {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .input:hover,
+[data-theme="light"] .textarea:hover,
+[data-theme="light"] .select:hover {
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .input:focus,
+[data-theme="light"] .textarea:focus,
+[data-theme="light"] .select:focus {
+    border-color: var(--accent-color);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+}
+
+[data-theme="light"] .select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(0,0,0,0.6)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+}
+
+[data-theme="light"] .topBarSelect {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #333;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(0,0,0,0.6)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+[data-theme="light"] .themeToggleBtn {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .themeToggleBtn:hover {
+    color: #000;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .viewportBtn {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] .viewportBtn:hover {
+    color: #000;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .viewportBtn.active {
+    background: rgba(139, 115, 85, 0.15);
+    color: var(--accent-color);
+}
+
+
 
 /* ---- AI Generator Modal ---- */
 .aiModalOverlay {

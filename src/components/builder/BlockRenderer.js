@@ -102,6 +102,7 @@ const BlockRenderer = memo(({ block, isPublic = false }) => {
             freeFormEnabled: true,
             blockId: block.id,
             elementPositions: _positions?.desktop || {},
+            sectionHeight: config.heights?.[currentViewMode], // Pass manual height
         };
 
     // Inject data props based on block type

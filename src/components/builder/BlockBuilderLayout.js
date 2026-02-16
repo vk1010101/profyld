@@ -4,9 +4,10 @@ import BlockLibrary from './BlockLibrary';
 import BlockCanvas from './BlockCanvas';
 import BlockEditor from './BlockEditor';
 import styles from './builder.module.css';
-import { Save, Check, AlertCircle, ArrowLeft, X, Monitor, Smartphone } from 'lucide-react';
+import { Save, Check, AlertCircle, ArrowLeft, X, Monitor, Smartphone, Sun, Moon, ChevronRight, ChevronLeft } from 'lucide-react';
 
 const BlockBuilderLayout = ({ isFullscreen = false, onExitFullscreen }) => {
+    // ... existing store hooks ...
     const { undo, redo } = useBuilderStore.temporal.getState();
     const hasUnsavedChanges = useBuilderStore((s) => s.hasUnsavedChanges);
     const saving = useBuilderStore((s) => s.saving);
@@ -20,6 +21,24 @@ const BlockBuilderLayout = ({ isFullscreen = false, onExitFullscreen }) => {
     const setAIGeneratorOpen = useBuilderStore((s) => s.setAIGeneratorOpen);
     const addBlock = useBuilderStore((s) => s.addBlock);
     const [username, setUsername] = useState('viditkohli'); // TODO: Fetch from context if available
+
+    // Theme Management
+    const [theme, setTheme] = useState('dark');
+
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('dashboard-theme') || 'dark';
+        setTheme(savedTheme);
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }, []);
+
+    const toggleTheme = () => {
+        const newTheme = theme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+        localStorage.setItem('dashboard-theme', newTheme);
+        document.documentElement.setAttribute('data-theme', newTheme);
+    };
+
+    // ... (rest of the component) ...
 
     // Listen for AI Generator Export
     useEffect(() => {
@@ -221,7 +240,18 @@ const BlockBuilderLayout = ({ isFullscreen = false, onExitFullscreen }) => {
                 {/* View Live Button */}
                 <button
                     className={styles.viewLiveBtn}
-                    onClick={() => window.open(`/u/${username}`, '_blank')}
+                    onClick={() => {
+                        const protocol = window.location.protocol;
+                        const host = window.location.host;
+                        const rootDomain = host.includes('localhost') ? 'localhost:3000' : 'profyld.com';
+                        // If localhost, we might need to use path for now, OR better: alert user about subdomain setup
+                        // But for production:
+                        if (host.includes('localhost')) {
+                            window.open(`/u/${username}`, '_blank');
+                        } else {
+                            window.open(`${protocol}//${username}.${rootDomain}`, '_blank');
+                        }
+                    }}
                 >
                     <Monitor size={14} />
                     View Live
@@ -244,6 +274,15 @@ const BlockBuilderLayout = ({ isFullscreen = false, onExitFullscreen }) => {
                         <Smartphone size={18} />
                     </button>
                 </div>
+
+                {/* Theme Toggle */}
+                <button
+                    className={styles.themeToggleBtn}
+                    onClick={toggleTheme}
+                    title="Toggle Theme"
+                >
+                    {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
 
                 <div className={styles.fullscreenActions}>
                     {hasUnsavedChanges && (
@@ -310,13 +349,14 @@ const BlockBuilderLayout = ({ isFullscreen = false, onExitFullscreen }) => {
                 <div
                     onClick={(e) => e.stopPropagation()} // Stop deselect when clicking actual canvas
                     style={{
-                        width: viewMode === 'mobile' ? '430px' : '100%', // Increased from 375 to 430
+                        width: viewMode === 'mobile' ? '430px' : '1200px', // Fixed desktop width for stability
                         minHeight: '100%',
                         transition: 'width 0.3s ease',
                         background: '#080808',
-                        borderLeft: viewMode === 'mobile' ? '1px solid rgba(255,255,255,0.1)' : 'none',
-                        borderRight: viewMode === 'mobile' ? '1px solid rgba(255,255,255,0.1)' : 'none',
-                        boxShadow: viewMode === 'mobile' ? '0 0 40px rgba(0,0,0,0.5)' : 'none',
+                        borderLeft: '1px solid rgba(255,255,255,0.1)',
+                        borderRight: '1px solid rgba(255,255,255,0.1)',
+                        boxShadow: '0 0 40px rgba(0,0,0,0.5)',
+                        // Centering logic handled by parent flex
                     }}
                 >
                     <BlockCanvas />
@@ -325,6 +365,16 @@ const BlockBuilderLayout = ({ isFullscreen = false, onExitFullscreen }) => {
 
             {/* ---- Right Panel (on selection) ---- */}
             <div className={`${styles.fullscreenRightPanel} ${rightPanelOpen ? styles.panelOpen : ''}`}>
+
+                {/* Collapse/Expand Handle - Visible when panel is open OR closed */}
+                <button
+                    className={styles.rightPanelToggleBtn}
+                    onClick={() => setRightPanelOpen(!rightPanelOpen)}
+                    title={rightPanelOpen ? "Collapse Editor" : "Expand Editor"}
+                >
+                    {rightPanelOpen ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
+                </button>
+
                 <BlockEditor />
             </div>
             {isAIGeneratorOpen && (

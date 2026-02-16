@@ -259,8 +259,8 @@ export default function VariantA() {
           <div className={styles.footerCol}>
             <h4>Company</h4>
             <div className={styles.footerLinks}>
-              <Link href="#" className={styles.footerLink}>Pricing</Link>
-              <Link href="#" className={styles.footerLink}>About Us</Link>
+              <Link href="/pricing" className={styles.footerLink}>Pricing</Link>
+              <Link href="/about" className={styles.footerLink}>About Us</Link>
               <Link href="mailto:support@profyld.com" className={styles.footerLink}>Contact</Link>
             </div>
           </div>

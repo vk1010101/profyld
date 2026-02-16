@@ -555,12 +555,23 @@ export default function LiveEditorPage() {
                         <RefreshCw size={16} />
                     </a>
                     {profile?.username && (
-                        <Link href={`/u/${profile.username}`} target="_blank">
-                            <Button size="small">
-                                <ExternalLink size={16} />
-                                View Live
-                            </Button>
-                        </Link>
+                        <button
+                            onClick={() => {
+                                const protocol = window.location.protocol;
+                                const host = window.location.host;
+                                const rootDomain = host.includes('localhost') ? 'localhost:3000' : 'profyld.com';
+                                if (host.includes('localhost')) {
+                                    window.open(`/u/${profile.username}`, '_blank');
+                                } else {
+                                    window.open(`${protocol}//${profile.username}.${rootDomain}`, '_blank');
+                                }
+                            }}
+                            className={styles.iconBtn} // Reusing button style or just inline
+                            style={{ display: 'flex', alignItems: 'center', gap: '6px', background: '#333', color: '#fff', border: 'none', padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}
+                        >
+                            <ExternalLink size={14} />
+                            View Live
+                        </button>
                     )}
                 </div>
             </div>

@@ -528,6 +528,23 @@ export const useBuilderStore = create(
             }));
         },
 
+        updateBlockHeight: (blockId, height, viewMode) => {
+            set((state) => ({
+                blocks: state.blocks.map(b => {
+                    if (b.id !== blockId) return b;
+
+                    const heights = b.config.heights || {};
+                    const newHeights = { ...heights, [viewMode]: height };
+
+                    return {
+                        ...b,
+                        config: { ...b.config, heights: newHeights }
+                    };
+                }),
+                hasUnsavedChanges: true
+            }));
+        },
+
     }), {
         limit: 5,
         partialize: (state) => ({ blocks: state.blocks }),
