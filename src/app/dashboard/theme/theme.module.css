@@ -1,0 +1,390 @@
+.container {
+  max-width: 900px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  font-family: var(--heading-font);
+  font-size: 1.75rem;
+  color: var(--text-primary);
+}
+
+.section {
+  background: var(--surface-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.section h2 {
+  font-size: 1.125rem;
+  color: var(--accent-color);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hero Preview */
+.heroPreview {
+  position: relative;
+  height: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.previewOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8));
+  pointer-events: none;
+}
+
+.previewContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 1rem;
+}
+
+.previewContent span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.previewContent h3 {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+
+.previewContent p {
+  font-size: 0.875rem;
+}
+
+/* Background Toggle */
+.backgroundToggle {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.toggleBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  background: var(--bg-color);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggleBtn:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+}
+
+.toggleBtn.active {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background: rgba(var(--accent-color), 0.1);
+}
+
+/* Gradient Controls */
+.gradientControls {
+  margin-bottom: 1.5rem;
+}
+
+.selectWrapper {
+  margin-top: 1rem;
+}
+
+.selectWrapper label {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.selectWrapper select {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.75rem 1rem;
+  font-family: var(--body-font);
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  background: var(--bg-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.selectWrapper select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+/* Solid Color Controls */
+.solidColorControls {
+  margin-bottom: 1.5rem;
+}
+
+/* Image Controls */
+.imageControls {
+  margin-bottom: 1.5rem;
+}
+
+.uploadBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 2rem;
+  background: var(--bg-color);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.uploadBtn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.uploadBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.uploadedImage {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.uploadedImage img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.removeBtn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.removeBtn:hover {
+  background: rgba(220, 38, 38, 0.9);
+}
+
+/* Slider */
+.sliderWrapper {
+  margin-top: 1rem;
+}
+
+.sliderWrapper label {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.sliderWrapper input[type="range"] {
+  width: 100%;
+  max-width: 300px;
+  height: 6px;
+  appearance: none;
+  background: var(--bg-color);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.sliderWrapper input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Presets */
+.presetsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.presetCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--preset-bg);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.presetCard:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.presetCard.selected {
+  border-color: var(--accent-color);
+}
+
+.presetPreview {
+  width: 100%;
+  height: 40px;
+  background: var(--preset-surface);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.previewAccent {
+  height: 100%;
+  width: 30%;
+  background: var(--preset-primary);
+}
+
+.presetCard span {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.checkIcon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: var(--accent-color);
+}
+
+/* Colors */
+.colorsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.colorPicker label {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.colorInput {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  background: var(--bg-color);
+  border-radius: 8px;
+}
+
+.colorInput input[type="color"] {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: transparent;
+}
+
+.colorInput input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.colorInput input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 6px;
+}
+
+.colorInput span {
+  font-family: monospace;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+/* Fonts */
+.fontsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.fontPicker label {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.fontPicker select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--body-font);
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  background: var(--bg-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.fontPicker select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.fontPreview {
+  margin-top: 0.75rem;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: var(--text-secondary);
+}

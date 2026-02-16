@@ -1,6 +1,6 @@
 .contact {
     padding: 6rem 0 2rem;
-    background: var(--surface);
+    background: var(--color-surface);
     text-align: center;
 }
 
@@ -16,25 +16,27 @@
     background: rgba(255, 255, 255, 0.03);
     padding: 2rem;
     border-radius: 12px;
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     max-width: 400px;
     flex: 1;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    border-color: var(--accent);
+    border-color: var(--color-primary);
 }
 
 .card h3 {
+    font-family: var(--font-heading);
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: var(--foreground);
+    color: var(--color-text-primary);
 }
 
 .card p {
-    color: #aaa;
+    font-family: var(--font-body);
+    color: var(--color-text-secondary);
     margin-bottom: 2rem;
     line-height: 1.6;
 }
@@ -43,8 +45,9 @@
     display: inline-block;
     padding: 0.8rem 2rem;
     background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent);
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    font-family: var(--font-body);
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 600;
@@ -52,8 +55,8 @@
 }
 
 .btn:hover {
-    background: var(--accent);
-    color: #000;
+    background: var(--color-primary);
+    color: var(--color-background);
 }
 
 .socials {
@@ -64,17 +67,43 @@
 }
 
 .socialLink {
-    color: #aaa;
+    color: var(--color-text-secondary);
     transition: color 0.3s ease;
 }
 
 .socialLink:hover {
-    color: var(--accent);
+    color: var(--color-primary);
 }
 
 .footer {
-    border-top: 1px solid var(--border);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 2rem;
-    color: #666;
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
     font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .contact {
+        padding: 4rem 0 2rem;
+    }
+
+    .content {
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card h3 {
+        font-size: 1.3rem;
+    }
+
+    .socials {
+        gap: 1.5rem;
+    }
 }

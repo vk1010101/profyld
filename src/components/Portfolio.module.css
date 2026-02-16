@@ -1,6 +1,6 @@
 .portfolio {
     padding: 8rem 0;
-    background: #050505;
+    background: var(--color-background);
     min-height: 100vh;
 }
 
@@ -12,7 +12,7 @@
 .divider {
     width: 60px;
     height: 3px;
-    background: var(--accent);
+    background: var(--color-primary);
     margin: 1rem auto;
 }
 
@@ -34,7 +34,7 @@
     overflow: hidden;
     border-radius: 12px;
     margin-bottom: 1.5rem;
-    background: #050505;
+    background: var(--color-background);
 }
 
 .coverImage {
@@ -62,6 +62,10 @@
     opacity: 1;
 }
 
+.item:hover .overlay {
+    opacity: 1;
+}
+
 .viewProject {
     color: #fff;
     border: 1px solid #fff;
@@ -69,6 +73,7 @@
     border-radius: 30px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-family: var(--font-body);
     font-size: 0.9rem;
     backdrop-filter: blur(5px);
 }
@@ -80,16 +85,17 @@
 }
 
 .projectNumber {
+    font-family: var(--font-body);
     font-size: 3rem;
     font-weight: 700;
     color: rgba(255, 255, 255, 0.1);
     line-height: 1;
-    font-family: var(--font-outfit);
 }
 
 .projectCard h3 {
+    font-family: var(--font-heading);
     font-size: 1.5rem;
-    color: #fff;
+    color: var(--color-text-primary);
     margin-top: 0.5rem;
     font-weight: 400;
     letter-spacing: 1px;
@@ -103,7 +109,8 @@
 .backButton {
     background: transparent;
     border: none;
-    color: #888;
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -114,7 +121,7 @@
 }
 
 .backButton:hover {
-    color: var(--accent);
+    color: var(--color-primary);
 }
 
 .detailHeader {
@@ -127,14 +134,16 @@
     position: absolute;
     left: 0;
     top: -1rem;
+    font-family: var(--font-body);
     font-size: 4rem;
     font-weight: 700;
     color: rgba(255, 255, 255, 0.05);
 }
 
 .detailHeader h2 {
+    font-family: var(--font-heading);
     font-size: 3rem;
-    color: var(--accent);
+    color: var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -223,6 +232,15 @@
     transform: scale(1.05);
 }
 
+.item .overlay span {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+}
+
 /* Lightbox Content */
 .lightboxContent {
     position: relative;
@@ -246,4 +264,42 @@
     color: #fff;
     font-size: 2rem;
     cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .portfolio {
+        padding: 6rem 0;
+    }
+
+    .projectGrid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .detailHeader {
+        padding-left: 0;
+    }
+
+    .detailNumber {
+        display: none;
+    }
+
+    .detailHeader h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio {
+        padding: 5rem 0;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projectCard h3 {
+        font-size: 1.25rem;
+    }
 }

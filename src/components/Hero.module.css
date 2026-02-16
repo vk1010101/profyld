@@ -6,8 +6,7 @@
     justify-content: center;
     position: relative;
     padding: 8rem 0 6rem;
-    background-image: url('/assets/portfolio/PORTFOLIO (1)_pages-to-jpg-0001.jpg');
-    /* Using first page as hero bg */
+    /* Background applied via inline styles from props */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -20,7 +19,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(15, 15, 15, 0.3), rgba(15, 15, 15, 0.9));
+    background: linear-gradient(to bottom,
+            color-mix(in srgb, var(--color-background) 30%, transparent),
+            color-mix(in srgb, var(--color-background) 90%, transparent));
 }
 
 .content {
@@ -33,16 +34,19 @@
 }
 
 .subtitle {
+    font-family: var(--font-body);
     font-size: clamp(0.9rem, 2.5vw, 1.2rem);
     text-transform: uppercase;
     letter-spacing: 0.3rem;
-    color: var(--accent);
+    color: var(--color-primary);
     margin-bottom: 1rem;
 }
 
 .title {
+    font-family: var(--font-heading);
     font-size: clamp(2.8rem, 11vw, 5rem);
     font-weight: 700;
+    color: var(--color-text-primary);
     margin-bottom: 1.5rem;
     letter-spacing: -0.08em;
     line-height: 1.05;
@@ -50,8 +54,9 @@
 }
 
 .description {
+    font-family: var(--font-body);
     font-size: clamp(1rem, 3.5vw, 1.2rem);
-    color: #ccc;
+    color: var(--color-text-secondary);
     margin-bottom: 3rem;
     max-width: 600px;
     margin-left: auto;
@@ -63,18 +68,64 @@
     display: inline-block;
     padding: 1rem 2.5rem;
     background: transparent;
-    border: 1px solid var(--foreground);
-    color: var(--foreground);
+    border: 1px solid var(--color-text-primary);
+    color: var(--color-text-primary);
     text-transform: uppercase;
     letter-spacing: 0.18rem;
     font-size: 0.95rem;
+    font-family: var(--font-body);
     transition: all 0.3s ease;
 }
 
 .cta:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #000;
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-background);
+}
+
+.scrollIndicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.mouse {
+    width: 26px;
+    height: 42px;
+    border: 2px solid var(--color-text-secondary);
+    border-radius: 20px;
+    position: relative;
+    opacity: 0.6;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 2px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scroll 2s infinite;
+}
+
+@keyframes scroll {
+    0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(15px);
+    }
 }
 
 @media (max-width: 1024px) {

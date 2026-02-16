@@ -1,0 +1,127 @@
+.themeContainer {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.75rem;
+    backdrop-filter: blur(10px);
+}
+
+.themeHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.themeHeader h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.iconWrapper {
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+}
+
+.themeGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.25rem;
+}
+
+.themeCard {
+    position: relative;
+    background: var(--bg-color);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: left;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.themeCard:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.themeCard.active {
+    background: rgba(var(--accent-rgb), 0.1);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.15);
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.themeName {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.checkIcon {
+    color: var(--accent-color);
+}
+
+.previewArea {
+    height: 60px;
+    border-radius: 8px;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.line {
+    position: absolute;
+    width: 60%;
+    height: 4px;
+    border-radius: 2px;
+}
+
+.line:nth-child(1) {
+    top: 15px;
+    width: 40%;
+}
+
+.line:nth-child(2) {
+    top: 25px;
+}
+
+.line:nth-child(3) {
+    top: 35px;
+    width: 70%;
+}
+
+.colorDots {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.fontPreview {
+    font-size: 1.25rem;
+    font-weight: 500;
+}

@@ -1,0 +1,171 @@
+.container {
+    background: var(--surface-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.progress {
+    margin-bottom: 1.25rem;
+}
+
+.progressBar {
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progressFill {
+    height: 100%;
+    background: var(--accent-color);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.progressLabel {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.stepsList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem;
+    background: var(--surface-hover);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.step:hover {
+    background: var(--border-color);
+    border-color: var(--accent-color);
+}
+
+.step.completed {
+    opacity: 0.6;
+}
+
+.stepIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(193, 154, 107, 0.15);
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.stepContent {
+    flex: 1;
+    min-width: 0;
+}
+
+.stepTitle {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.stepDescription {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.15rem;
+}
+
+.stepAction {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.875rem;
+    background: var(--text-primary);
+    color: var(--surface-color);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    flex-shrink: 0;
+}
+
+.stepAction:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.checkIcon {
+    color: var(--success);
+    flex-shrink: 0;
+}
+
+.circleIcon {
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+}
+
+.step.active {
+    border-color: var(--accent-color);
+    background: var(--surface-hover);
+    box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.1);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.4);
+    }
+
+    70% {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0);
+    }
+}
+
+.step.nextup {
+    animation: pulse 2s infinite;
+    border-color: var(--accent-color);
+}
+
+.step.completed .stepTitle {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.step.completed .stepIcon {
+    background: var(--surface-hover);
+    color: var(--text-tertiary);
+}

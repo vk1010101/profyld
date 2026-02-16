@@ -1,0 +1,138 @@
+.container {
+    background: var(--surface-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 1.25rem 0;
+}
+
+.section {
+    margin-bottom: 1.5rem;
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+.sectionTitle {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin: 0 0 0.75rem 0;
+}
+
+.referrersList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.referrerItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--surface-hover);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.referrerItem:hover {
+    background: var(--border-color);
+}
+
+.referrerIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+}
+
+.referrerName {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.referrerCount {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-left: auto;
+}
+
+.arrow {
+    color: var(--text-secondary);
+}
+
+.projectCard {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem;
+    background: var(--surface-hover);
+    border-radius: 10px;
+}
+
+.projectIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(193, 154, 107, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.projectName {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.projectClicks {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    text-align: center;
+    background: var(--surface-hover);
+    border-radius: 10px;
+    border: 1px dashed var(--border-color);
+}
+
+.emptyIcon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.7;
+}
+
+.emptyText {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.emptySub {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}

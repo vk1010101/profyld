@@ -1,0 +1,236 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal {
+    background: var(--surface-color, #1a1a1a);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.closeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary, #999);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary, #fff);
+}
+
+.content {
+    text-align: center;
+}
+
+.iconWrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(139, 115, 85, 0.2), rgba(139, 115, 85, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: var(--accent-color, #8b7355);
+}
+
+.iconWrapper.success {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.1));
+    color: #4caf50;
+}
+
+.content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary, #fff);
+    margin-bottom: 0.5rem;
+}
+
+.content p {
+    color: var(--text-secondary, #999);
+    font-size: 0.9375rem;
+    margin-bottom: 1.5rem;
+}
+
+.content p strong {
+    color: var(--accent-color, #8b7355);
+}
+
+.emailInput {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: var(--bg-color, #0a0a0a);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--text-primary, #fff);
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.emailInput:focus {
+    outline: none;
+    border-color: var(--accent-color, #8b7355);
+}
+
+.codeInputs {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.codeInput {
+    width: 48px;
+    height: 56px;
+    background: var(--bg-color, #0a0a0a);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--text-primary, #fff);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    transition: border-color 0.2s ease;
+}
+
+.codeInput:focus {
+    outline: none;
+    border-color: var(--accent-color, #8b7355);
+}
+
+.error {
+    color: #ff6b6b;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.submitBtn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    background: var(--accent-color, #8b7355);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+    background: var(--accent-hover, #7a6548);
+    transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.backBtn {
+    background: none;
+    border: none;
+    color: var(--text-secondary, #999);
+    font-size: 0.875rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.backBtn:hover {
+    color: var(--text-primary, #fff);
+}
+
+.closeTextBtn {
+    background: none;
+    border: none;
+    color: var(--text-secondary, #999);
+    font-size: 0.875rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    padding: 0.5rem;
+}
+
+.closeTextBtn:hover {
+    color: var(--text-primary, #fff);
+}
+
+@media (max-width: 480px) {
+    .modal {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .codeInput {
+        width: 40px;
+        height: 48px;
+        font-size: 1.25rem;
+    }
+}

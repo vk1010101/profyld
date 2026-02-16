@@ -1,0 +1,35 @@
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ring {
+    transform: rotate(-90deg);
+}
+
+.background {
+    fill: none;
+    stroke: var(--border-color);
+}
+
+.progress {
+    fill: none;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.label {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.percentage {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}

@@ -1,14 +1,48 @@
-:root {
-  --background: #0f0f0f;
-  --foreground: #f5f5f5;
-  --accent: #d4af37;
-  /* Gold */
-  --accent-glow: rgba(212, 175, 55, 0.3);
-  --surface: #1a1a1a;
-  --surface-hover: #252525;
-  --border: #333333;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Bebas+Neue&family=Libre+Baskerville:wght@400;700&family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Lato:wght@300;400;700&family=Source+Sans+3:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&family=DM+Serif+Display&family=Fraunces:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap');
 
-  --font-outfit: 'Outfit', sans-serif;
+/* =====================================================
+   CSS VARIABLES - Theme System
+   These can be overridden dynamically via JavaScript
+   ===================================================== */
+:root {
+  /* Theme Colors - Light Mode (Default) */
+  --bg-color: #ffffff;
+  --surface-color: #f8fafc;
+  --surface-hover: #f1f5f9;
+  --border-color: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --accent-color: #8B7355;
+  --accent-rgb: 139, 115, 85;
+  --accent-hover: #725e45;
+  --success-color: #22c55e;
+  --danger-color: #ef4444;
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+[data-theme='dark'] {
+  /* Theme Colors - Dark Mode (Premium Slate) */
+  --bg-color: #020617;
+  /* Very dark slate/zinc */
+  --surface-color: #0f172a;
+  --surface-hover: #1e293b;
+  --border-color: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --accent-color: #a89070;
+  --accent-hover: #c4ad8e;
+}
+
+/* Legacy variable mapping */
+:root {
+  --color-primary: var(--accent-color);
+  --color-background: var(--bg-color);
+  --color-surface: var(--surface-color);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
 }
 
 html {
@@ -16,12 +50,13 @@ html {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-outfit);
+  color: var(--color-text-primary);
+  background: var(--color-background);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 * {
@@ -37,25 +72,29 @@ a {
 }
 
 a:hover {
-  color: var(--accent);
+  color: var(--color-primary);
 }
 
 /* Scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: var(--surface-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--surface-hover);
-  border-radius: 4px;
+  background: var(--color-primary);
+  /* Gold */
+  border: 2px solid var(--surface-color);
+  /* Contrast */
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: var(--accent-hover);
 }
 
 /* Utility Classes */
@@ -66,21 +105,59 @@ a:hover {
 }
 
 .section-title {
+  font-family: var(--font-heading);
   font-size: clamp(1.8rem, 6vw, 2.5rem);
-  font-weight: 700;
+  font-weight: 600;
   margin-bottom: 2rem;
   text-align: center;
-  background: linear-gradient(to right, #fff, #999);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-text-primary);
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Better buttons */
+.primary-btn {
+  background: var(--color-primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.primary-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+/* Heading styles */
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+}
+
+h4,
+h5,
+h6,
+p,
+span,
+a,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-body);
 }
 
 @media (max-width: 768px) {
@@ -96,5 +173,20 @@ a:hover {
 
   .section-title {
     margin-bottom: 1.5rem;
+  }
+}
+
+/* ─── Shimmer Animation (gradient text sweep) ─── */
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
   }
 }

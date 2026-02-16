@@ -1,0 +1,303 @@
+.authContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-background, #0A0A0A);
+}
+
+.authBackground {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.gradientOrb1 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 115, 85, 0.15) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  filter: blur(60px);
+}
+
+.gradientOrb2 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 115, 85, 0.1) 0%, transparent 70%);
+  bottom: -150px;
+  left: -150px;
+  filter: blur(60px);
+}
+
+.authContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  padding: 2rem;
+}
+
+.authCard {
+  background: var(--color-surface, #1A1A1A);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.authHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.5rem;
+  color: var(--color-text-primary, #fff);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary, #A0A0A0);
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.usernamePreview {
+  background: rgba(139, 115, 85, 0.1);
+  border: 1px solid rgba(139, 115, 85, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.usernamePreview p {
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary, #A0A0A0);
+  margin-bottom: 0.5rem;
+}
+
+.usernamePreview .previewUrl {
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.95rem;
+  color: var(--color-primary, #8B7355);
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.usernamePreview .previewUrl span {
+  color: var(--color-text-primary, #fff);
+}
+
+.formError {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.875rem;
+  color: #dc2626;
+}
+
+.formSuccess {
+  background: rgba(22, 163, 74, 0.1);
+  border: 1px solid rgba(22, 163, 74, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.875rem;
+  color: #16a34a;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.5rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.divider span {
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary, #A0A0A0);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.authFooter {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary, #A0A0A0);
+}
+
+.authFooter a {
+  color: var(--color-primary, #8B7355);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.authFooter a:hover {
+  text-decoration: underline;
+}
+
+.statusIcon {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.statusIcon.checking {
+  color: var(--color-text-secondary, #A0A0A0);
+}
+
+.statusIcon.available {
+  color: #16a34a;
+}
+
+.statusIcon.unavailable {
+  color: #dc2626;
+}
+
+/* CV Upload Styles */
+.cvUploadSection {
+  background: rgba(139, 115, 85, 0.05);
+  border: 1px dashed rgba(139, 115, 85, 0.3);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.cvLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-primary, #8B7355);
+  margin-bottom: 0.25rem;
+}
+
+.cvHint {
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary, #A0A0A0);
+  margin-bottom: 1rem;
+}
+
+.cvUploadBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary, #A0A0A0);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cvUploadBtn:hover:not(:disabled) {
+  background: rgba(139, 115, 85, 0.1);
+  border-color: var(--color-primary, #8B7355);
+  color: var(--color-primary, #8B7355);
+}
+
+.cvUploadBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cvSelected {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(22, 163, 74, 0.1);
+  border: 1px solid rgba(22, 163, 74, 0.3);
+  border-radius: 8px;
+  color: #16a34a;
+}
+
+.cvFileName {
+  flex: 1;
+  font-family: var(--font-body, 'Montserrat', sans-serif);
+  font-size: 0.875rem;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cvRemove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cvRemove:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cvRemove:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .authContent {
+    padding: 1rem;
+  }
+
+  .authCard {
+    padding: 1.5rem;
+  }
+}

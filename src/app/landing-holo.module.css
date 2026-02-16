@@ -1,0 +1,372 @@
+/* Holo Cyberpunk Theme */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Rajdhani:wght@400;600;700&display=swap');
+
+.container {
+    background-color: #050505;
+    color: #e0faff;
+    font-family: 'Rajdhani', sans-serif;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+}
+
+.sceneContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    opacity: 0.6;
+    /* Slight fade to let text pop */
+}
+
+/* UI Overlay */
+.overlay {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    padding-bottom: 1rem;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #00ffff;
+}
+
+.logoIcon {
+    width: 15px;
+    height: 15px;
+    background: #00ffff;
+    box-shadow: 0 0 10px #00ffff;
+}
+
+.highlight {
+    color: #ff0055;
+}
+
+.navLinks {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.navLink {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.navLink:hover {
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff;
+}
+
+.ctaBtn {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid #00ffff;
+    padding: 0.5rem 1.5rem;
+    text-decoration: none;
+    color: #00ffff;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.ctaBtn:hover {
+    background: #00ffff;
+    color: #000;
+    box-shadow: 0 0 15px #00ffff;
+}
+
+/* Hero Content */
+.heroContent {
+    max-width: 600px;
+    padding-left: 2rem;
+}
+
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(0, 255, 0, 0.5);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    color: rgba(0, 255, 0, 0.8);
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 1.5rem;
+    background: rgba(0, 20, 0, 0.3);
+}
+
+.statusDot {
+    width: 6px;
+    height: 6px;
+    background: #00ff00;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #00ff00;
+    animation: blink 2s infinite;
+}
+
+.title {
+    font-size: 5rem;
+    line-height: 0.9;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.glitchText {
+    color: #00ffff;
+    position: relative;
+}
+
+.cursor {
+    animation: blink 1s step-end infinite;
+    color: #ff0055;
+    margin-left: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 2.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.6;
+    border-left: 2px solid #ff0055;
+    padding-left: 1rem;
+}
+
+.heroActions {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.primaryBtn {
+    background: #ff0055;
+    color: #fff;
+    padding: 1rem 2rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+    transition: transform 0.2s;
+}
+
+.primaryBtn:hover {
+    transform: translate(2px, -2px);
+    box-shadow: -5px 5px 0 rgba(255, 0, 85, 0.3);
+}
+
+.secondaryBtn {
+    color: #00ffff;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px dashed rgba(0, 255, 255, 0.3);
+    transition: all 0.3s;
+}
+
+.secondaryBtn:hover {
+    border-color: #00ffff;
+    background: rgba(0, 255, 255, 0.05);
+}
+
+.statsGrid {
+    display: flex;
+    gap: 2rem;
+}
+
+.statusItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+}
+
+.icon {
+    color: #00ffff;
+}
+
+/* Footer */
+.footer {
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.code {
+    font-family: 'JetBrains Mono', monospace;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.8rem;
+    margin-right: 1.5rem;
+}
+
+/* EFFECTS */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0) 50%,
+            rgba(0, 0, 0, 0.1) 50%,
+            rgba(0, 0, 0, 0.1));
+    background-size: 100% 4px;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 60%, #000 150%);
+    z-index: 6;
+    pointer-events: none;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'JetBrains Mono', monospace;
+    color: #00ffff;
+    animation: blink 0.5s infinite;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .overlay {
+        padding: 1rem;
+    }
+
+    .nav {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .navLinks {
+        gap: 0.75rem;
+    }
+
+    .navLink {
+        font-size: 0.75rem;
+    }
+
+    .ctaBtn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .heroContent {
+        padding-left: 0;
+        max-width: 100%;
+    }
+
+    .title {
+        font-size: clamp(2rem, 12vw, 3.5rem);
+        margin-bottom: 1rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .heroActions {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .primaryBtn,
+    .secondaryBtn {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .statsGrid {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .statusItem {
+        font-size: 0.8rem;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .footerInfo {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .footerLinks {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .code {
+        font-size: 0.7rem;
+        margin-right: 0;
+    }
+}

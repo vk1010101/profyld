@@ -1,0 +1,306 @@
+/* ===========================
+   Creative Canvas — Artboard
+   =========================== */
+
+.canvasContainer {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #0d0d0d;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Element Toolbar */
+.elementToolbar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-wrap: wrap;
+}
+
+.toolbarGroup {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.toolbarDivider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 0 4px;
+}
+
+.toolbarBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.toolbarBtn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.toolbarBtn.active {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: rgba(99, 102, 241, 0.4);
+    color: #a5b4fc;
+}
+
+.toolbarBtn.danger {
+    color: rgba(239, 68, 68, 0.7);
+}
+
+.toolbarBtn.danger:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.toolbarLabel {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.35);
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+/* Artboard Viewport */
+.artboardViewport {
+    position: relative;
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 24px;
+    min-height: 400px;
+    background:
+        radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+    background-size: 24px 24px;
+}
+
+/* The actual artboard */
+.artboard {
+    position: relative;
+    background: #1a1a2e;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 20px 60px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    transform-origin: top center;
+    cursor: crosshair;
+    flex-shrink: 0;
+}
+
+.artboard.isEmpty::after {
+    content: 'Click the buttons above to add elements';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 14px;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* Canvas Info Bar */
+.canvasInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.canvasInfo span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ===========================
+   Canvas Elements
+   =========================== */
+
+.canvasElement {
+    position: absolute;
+    outline: none;
+}
+
+.canvasElement.selected {
+    outline: 2px solid #6366f1;
+    outline-offset: 0px;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+/* Resize Handles */
+.resizeHandle {
+    background: transparent !important;
+}
+
+.resizeHandleCorner {
+    width: 10px !important;
+    height: 10px !important;
+    background: #6366f1 !important;
+    border: 2px solid #fff !important;
+    border-radius: 50% !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) !important;
+    z-index: 10 !important;
+}
+
+/* Text Element */
+.textElement {
+    user-select: none;
+    cursor: inherit;
+}
+
+.textElement.editing {
+    user-select: text;
+    cursor: text;
+    outline: 1px dashed rgba(99, 102, 241, 0.4);
+    outline-offset: 2px;
+}
+
+/* Image Placeholder */
+.imagePlaceholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px dashed rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.imagePlaceholder:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(99, 102, 241, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===========================
+   Element Properties Panel
+   =========================== */
+
+.propsPanel {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.propGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.propGroup label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.propRow {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.propInput {
+    flex: 1;
+    padding: 6px 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #fff;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.propInput:focus {
+    border-color: rgba(99, 102, 241, 0.5);
+}
+
+.propInput::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.colorSwatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.colorSwatch:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Zoom Controls */
+.zoomControls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.zoomBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.zoomBtn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+.zoomLabel {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    min-width: 36px;
+    text-align: center;
+}
