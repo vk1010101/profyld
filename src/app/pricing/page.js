@@ -20,15 +20,15 @@ export default function PricingPage() {
             name: 'Starter',
             price: 'Free',
             period: 'Forever',
-            description: 'Perfect for building your professional identity and testing the waters.',
+            description: 'Essential tools to build your online presence.',
             features: [
-                'Professional CV Builder',
-                'Access to "Minimalist" Theme Pack',
-                'PDF Export (Watermarked)',
-                'Live Editor & Real-time Preview',
-                'Basic Analytics (View Counts)'
+                'Basic Portfolio Builder',
+                'Standard Themes (Minimalist)',
+                'Public Profile URL',
+                'PDF Resume Export (Basic)',
+                'Limited AI Credits'
             ],
-            cta: 'Start Building Free',
+            cta: 'Start Free',
             href: '/signup',
             popular: false,
             highlight: false
@@ -37,16 +37,16 @@ export default function PricingPage() {
             name: 'Professional',
             price: '₹999',
             period: '/year',
-            description: 'For serious professionals who want to stand out and get hired faster.',
+            description: 'Unlock premium features and remove branding.',
             features: [
                 'Everything in Starter',
-                'Public `username.profyld.com` URL',
-                'Remove "Powered by" Branding',
-                'AI-Powered Content Suggestions',
+                'Custom Domain Connection',
+                'No "Powered by" Branding',
                 'Premium Themes (Glass, Neumorphic)',
-                'SEO Meta-Tag Optimization'
+                'SEO Meta-Tags & OG Images',
+                'Visitor Analytics'
             ],
-            cta: 'Go Professional',
+            cta: 'Go Pro',
             href: '/checkout/pro',
             popular: true,
             highlight: true
@@ -54,15 +54,15 @@ export default function PricingPage() {
         {
             name: 'Executive',
             price: '₹2,499',
-            period: '/year',
-            description: 'The ultimate toolkit for industry leaders and senior content creators.',
+            period: '/lifetime',
+            description: 'The complete suite for serious career growth.',
             features: [
                 'Everything in Professional',
-                'Custom Domain Connection (.com)',
-                'Priority Indexing on Google',
-                'Advanced 3D & Holographic Themes',
-                'Uncapped AI usage for Bio/CV',
-                'Dedicated 24/7 Priority Support'
+                'Advanced Builder System',
+                'ATS-Compliant CV Builder',
+                'Smart AI Resume Import',
+                '3D & Holographic Themes',
+                'Priority Support & Indexing'
             ],
             cta: 'Get Executive Access',
             href: '/checkout/executive',

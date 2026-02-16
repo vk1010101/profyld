@@ -124,7 +124,6 @@ export default function VariantA() {
           </h1>
 
           <p className={styles.heroSubtitle}>
-            Building a portfolio shouldn&apos;t feel like a hackathon.
             Experience the world&apos;s most intuitive builder.
           </p>
 
