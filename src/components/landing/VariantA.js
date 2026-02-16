@@ -234,10 +234,52 @@ export default function VariantA() {
           </Link>
         </div>
 
-        <p className="cta-footer" style={{ position: 'relative', marginTop: '5rem', color: '#b0a898', fontSize: '0.85rem' }}>
-          &copy; {new Date().getFullYear()} profyld.
-        </p>
       </section>
+
+      {/* Footer */}
+      <footer className={styles.footer}>
+        <div className={styles.footerGrid}>
+          <div className={styles.footerCol}>
+            <div className={styles.logo} style={{ color: '#333', marginBottom: '1rem' }}>profyld.</div>
+            <p style={{ color: '#666', fontSize: '0.9rem', lineHeight: '1.6' }}>
+              Turn your basic resume into a masterpiece. Use our free, ATS-compliant tools to land your dream job.
+            </p>
+          </div>
+
+          <div className={styles.footerCol}>
+            <h4>Product</h4>
+            <div className={styles.footerLinks}>
+              <Link href="/?variant=cv" className={styles.footerLink}>
+                Free CV Builder <span style={{ fontSize: '0.7em', background: '#eef', color: '#55a', padding: '2px 6px', borderRadius: '4px', marginLeft: '4px' }}>ATS</span>
+              </Link>
+              <Link href="/signup" className={styles.footerLink}>Portfolio Builder</Link>
+              <Link href="#" className={styles.footerLink}>Templates</Link>
+            </div>
+          </div>
+
+          <div className={styles.footerCol}>
+            <h4>Company</h4>
+            <div className={styles.footerLinks}>
+              <Link href="#" className={styles.footerLink}>Pricing</Link>
+              <Link href="#" className={styles.footerLink}>About Us</Link>
+              <Link href="mailto:support@profyld.com" className={styles.footerLink}>Contact</Link>
+            </div>
+          </div>
+
+          <div className={styles.footerCol}>
+            <h4>Legal</h4>
+            <div className={styles.footerLinks}>
+              <Link href="#" className={styles.footerLink}>Terms & Conditions</Link>
+              <Link href="#" className={styles.footerLink}>Privacy Policy</Link>
+              <Link href="#" className={styles.footerLink}>Cookie Policy</Link>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.footerCopyright}>
+          &copy; {new Date().getFullYear()} profyld. All rights reserved.
+        </div>
+      </footer>
     </main>
   );
 }
