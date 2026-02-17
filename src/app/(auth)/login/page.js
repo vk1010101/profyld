@@ -78,55 +78,69 @@ export default function LoginPage() {
   }
 
   return (
-    <div className={styles.authCard}>
-      <div className={styles.authHeader}>
-        <Link href="/" className={styles.logo} style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>profyld.</Link>
-        <h1 className={styles.title}>Sign In</h1>
-        <p className={styles.subtitle}>Sign in to manage your portfolio</p>
+    <div className={styles.authContainer}>
+      <Link href="/" style={{
+        position: 'absolute',
+        top: '2rem',
+        left: '2rem',
+        fontFamily: 'var(--font-playfair), "Playfair Display", serif',
+        fontSize: '1.5rem',
+        fontWeight: '700',
+        color: '#000',
+        textDecoration: 'none',
+        zIndex: 20
+      }}>
+        profyld.
+      </Link>
+      <div className={styles.authCard}>
+        <div className={styles.authHeader}>
+          <div className={styles.logo}>profyld.</div>
+          <h1 className={styles.title}>Sign In</h1>
+          <p className={styles.subtitle}>Sign in to manage your portfolio</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className={styles.authForm}>
+          {formError && (
+            <div className={styles.formError}>{formError}</div>
+          )}
+
+          <Input
+            label="Email"
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            value={formData.email}
+            onChange={handleChange}
+            error={errors.email}
+            autoComplete="email"
+          />
+
+          <Input
+            label="Password"
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            value={formData.password}
+            onChange={handleChange}
+            error={errors.password}
+            autoComplete="current-password"
+          />
+
+          {/* CAPTCHA */}
+          <Turnstile onVerify={(token) => setTurnstileToken(token)} />
+
+          <Button
+            type="submit"
+            fullWidth
+            loading={loading || authLoading}
+          >
+            Sign In
+          </Button>
+        </form>
+
+        <div className={styles.authFooter}>
+          Don&apos;t have an account? <Link href="/signup">Create one</Link>
+        </div>
       </div>
-
-      <form onSubmit={handleSubmit} className={styles.authForm}>
-        {formError && (
-          <div className={styles.formError}>{formError}</div>
-        )}
-
-        <Input
-          label="Email"
-          type="email"
-          name="email"
-          placeholder="you@example.com"
-          value={formData.email}
-          onChange={handleChange}
-          error={errors.email}
-          autoComplete="email"
-        />
-
-        <Input
-          label="Password"
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          value={formData.password}
-          onChange={handleChange}
-          error={errors.password}
-          autoComplete="current-password"
-        />
-
-        {/* CAPTCHA */}
-        <Turnstile onVerify={(token) => setTurnstileToken(token)} />
-
-        <Button
-          type="submit"
-          fullWidth
-          loading={loading || authLoading}
-        >
-          Sign In
-        </Button>
-      </form>
-
-      <div className={styles.authFooter}>
-        Don&apos;t have an account? <Link href="/signup">Create one</Link>
-      </div>
-    </div>
-  )
+      )
 }

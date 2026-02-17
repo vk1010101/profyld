@@ -19,8 +19,8 @@
   --danger-color: #ef4444;
 
   /* Typography */
-  --font-heading: 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Montserrat', sans-serif;
 }
 
 [data-theme='dark'] {

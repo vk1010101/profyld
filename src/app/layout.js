@@ -1,9 +1,9 @@
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-outfit",
   display: "swap",
 });
 
@@ -42,7 +42,7 @@ import { ThemeProvider } from "@/components/context/ThemeContext";
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${rajdhani.variable} ${playfair.variable} antialiased`}>
+      <body className={`${outfit.variable} ${rajdhani.variable} ${playfair.variable} antialiased`}>
         <ThemeProvider>
           {children}
         </ThemeProvider>
