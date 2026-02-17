@@ -91,6 +91,8 @@ export default function TermsPage() {
                         If you have any questions about these Terms, please contact us at <a href="mailto:support@profyld.com" style={{ color: '#fff', textDecoration: 'underline' }}>support@profyld.com</a>.
                     </p>
                     <div style={{ marginTop: '1rem', lineHeight: '1.6', color: '#aaa' }}>
+                        <strong>Business Name:</strong> NFE<br />
+                        <strong>Mobile:</strong> +91 9289034558<br />
                         <strong>Registered Address:</strong><br />
                         14 BLOCK B, FRIENDS TOWER APTTS,<br />
                         SECTOR 9 ROHINI, NEW DELHI,<br />

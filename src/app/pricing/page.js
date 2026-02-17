@@ -47,7 +47,7 @@ export default function PricingPage() {
                 'Visitor Analytics'
             ],
             cta: 'Go Pro',
-            href: '/checkout/pro',
+            href: '/signup',
             popular: true,
             highlight: true
         },
@@ -65,7 +65,7 @@ export default function PricingPage() {
                 'Priority Support & Indexing'
             ],
             cta: 'Get Executive Access',
-            href: '/checkout/executive',
+            href: '/signup',
             popular: false,
             highlight: false
         }
