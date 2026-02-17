@@ -99,6 +99,8 @@ export default function VariantA() {
       <nav className={styles.nav}>
         <div className={styles.logo}>profyld.</div>
         <div className={styles.navLinks}>
+          <Link href="/pricing" className={styles.navLink}>Pricing</Link>
+          <Link href="/about" className={styles.navLink}>About</Link>
           {loading ? null : user ? (
             <>
               <span className={styles.navLink} style={{ cursor: 'default' }}>

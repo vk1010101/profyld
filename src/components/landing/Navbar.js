@@ -11,6 +11,8 @@ export default function Navbar() {
         <nav className={styles.nav}>
             <div className={styles.logo}>profyld.</div>
             <div className={styles.navLinks}>
+                <Link href="/pricing" className={styles.navLink}>Pricing</Link>
+                <Link href="/about" className={styles.navLink}>About</Link>
                 {loading ? null : user ? (
                     <Link href="/dashboard" className={styles.navBtn}>Dashboard</Link>
                 ) : (
