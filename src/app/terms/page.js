@@ -85,6 +85,18 @@ export default function TermsPage() {
                         These terms shall be governed by and construed in accordance with the laws of India.
                     </p>
                 </section>
+                <section style={{ marginBottom: '2rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>10. Contact Information</h2>
+                    <p style={{ lineHeight: '1.6', color: '#aaa' }}>
+                        If you have any questions about these Terms, please contact us at <a href="mailto:support@profyld.com" style={{ color: '#fff', textDecoration: 'underline' }}>support@profyld.com</a>.
+                    </p>
+                    <div style={{ marginTop: '1rem', lineHeight: '1.6', color: '#aaa' }}>
+                        <strong>Registered Address:</strong><br />
+                        14 BLOCK B, FRIENDS TOWER APTTS,<br />
+                        SECTOR 9 ROHINI, NEW DELHI,<br />
+                        North West Delhi, Delhi, 110085
+                    </div>
+                </section>
             </div>
         </div>
     );

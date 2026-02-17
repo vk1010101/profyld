@@ -265,10 +265,7 @@ export default function VariantA() {
             <div className={styles.footerLinks}>
               <Link href="/pricing" className={styles.footerLink}>Pricing</Link>
               <Link href="/about" className={styles.footerLink}>About Us</Link>
-              <div className={styles.footerLink} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <a href="mailto:support@profyld.com" style={{ color: 'inherit', textDecoration: 'none' }}>support@profyld.com</a>
-                <a href="tel:+919289034558" style={{ color: 'inherit', textDecoration: 'none', fontSize: '0.9em', opacity: 0.8 }}>+91 92890 34558</a>
-              </div>
+              <Link href="/contact" className={styles.footerLink}>Contact</Link>
             </div>
           </div>
 
