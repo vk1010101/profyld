@@ -273,6 +273,7 @@ export default function VariantA() {
             <h4>Legal</h4>
             <div className={styles.footerLinks}>
               <Link href="/terms" className={styles.footerLink}>Terms & Conditions</Link>
+              <Link href="/refund-policy" className={styles.footerLink}>Refund Policy</Link>
               <Link href="/privacy" className={styles.footerLink}>Privacy Policy</Link>
               <Link href="/cookie-policy" className={styles.footerLink}>Cookie Policy</Link>
             </div>
