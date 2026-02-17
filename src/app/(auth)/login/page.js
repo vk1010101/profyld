@@ -142,5 +142,6 @@ export default function LoginPage() {
           Don&apos;t have an account? <Link href="/signup">Create one</Link>
         </div>
       </div>
-      )
+    </div>
+  )
 }
