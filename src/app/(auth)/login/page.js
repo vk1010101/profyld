@@ -79,19 +79,17 @@ export default function LoginPage() {
 
   return (
     <div className={styles.authContainer}>
-      <Link href="/" style={{
-        position: 'absolute',
-        top: '2rem',
-        left: '2rem',
-        fontFamily: 'var(--font-playfair), "Playfair Display", serif',
-        fontSize: '1.5rem',
-        fontWeight: '700',
-        color: '#000',
-        textDecoration: 'none',
-        zIndex: 20
-      }}>
-        profyld.
-      </Link>
+      <div style={{ position: 'absolute', top: '2rem', left: '2rem', zIndex: 20 }}>
+        <Link href="/" style={{
+          fontFamily: 'var(--font-playfair), "Playfair Display", serif',
+          fontSize: '1.5rem',
+          fontWeight: '700',
+          color: '#000',
+          textDecoration: 'none',
+        }}>
+          profyld.
+        </Link>
+      </div>
       <div className={styles.authCard}>
         <div className={styles.authHeader}>
           <div className={styles.logo}>profyld.</div>
