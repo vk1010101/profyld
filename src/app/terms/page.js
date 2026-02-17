@@ -1,95 +1,91 @@
-import styles from './legal.module.css';
+import Navbar from '@/components/landing/Navbar';
+import Footer from '@/components/landing/Footer'; // Assuming we have a shared Footer or I should use VariantA's footer logic? 
+// Wait, VariantA has its own footer. Navbar is shared. 
+// I should probably create a simple layout or just use Navbar + content.
+// For now, I'll use Navbar and a simple text container.
 
-export const metadata = {
-    title: 'Terms of Service | Profyld',
-    description: 'Terms of Service for Profyld portfolio platform',
-};
-
-export default function TermsOfService() {
+export default function TermsPage() {
     return (
-        <div className={styles.container}>
-            <h1 className={styles.title}>Terms of Service</h1>
-            <p className={styles.lastUpdated}>Last updated: February 7, 2026</p>
+        <div style={{ minHeight: '100vh', background: '#000', color: '#fff', fontFamily: 'var(--font-outfit)' }}>
+            <Navbar />
+            <div style={{ maxWidth: '800px', margin: '0 auto', padding: '120px 20px 60px' }}>
+                <h1 style={{ fontSize: '2.5rem', marginBottom: '2rem' }}>Terms and Conditions</h1>
+                <p style={{ marginBottom: '1rem', color: '#ccc' }}>Last updated: {new Date().toLocaleDateString()}</p>
 
-            <section className={styles.section}>
-                <h2>1. Acceptance of Terms</h2>
-                <p>
-                    By accessing or using Profyld ("Service"), you agree to be bound by these Terms of Service.
-                    If you do not agree to these terms, please do not use the Service.
+                <p style={{ lineHeight: '1.6', color: '#aaa', marginBottom: '2rem' }}>
+                    These Terms and Conditions govern your use of this website and the purchase of products or services offered herein. By accessing or using this website, you agree to be bound by these terms. Please read them carefully.
                 </p>
-            </section>
 
-            <section className={styles.section}>
-                <h2>2. Description of Service</h2>
-                <p>
-                    Profyld is a portfolio building platform that allows users to create, customize, and share
-                    professional portfolios online. We provide tools for profile management, CV creation,
-                    project showcasing, and analytics.
-                </p>
-            </section>
+                <section style={{ marginBottom: '2rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>1. General Use</h2>
+                    <p style={{ lineHeight: '1.6', color: '#aaa' }}>
+                        By using this website, you confirm that you are at least 18 years old or are using the website under the supervision of a parent or legal guardian.
+                        All content on this website is for informational purposes only and is subject to change without notice.
+                    </p>
+                </section>
 
-            <section className={styles.section}>
-                <h2>3. User Accounts</h2>
-                <ul>
-                    <li>You must provide accurate information when creating an account</li>
-                    <li>You are responsible for maintaining the security of your account</li>
-                    <li>You must be at least 13 years old to use this Service</li>
-                    <li>One person may not maintain more than one free account</li>
-                </ul>
-            </section>
+                <section style={{ marginBottom: '2rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>2. User Responsibilities</h2>
+                    <p style={{ lineHeight: '1.6', color: '#aaa' }}>
+                        Users agree not to misuse the website by knowingly introducing viruses, trojans, or other malicious material.
+                        You must not attempt to gain unauthorized access to the server, database, or any part of the site.
+                    </p>
+                </section>
 
-            <section className={styles.section}>
-                <h2>4. User Content</h2>
-                <p>
-                    You retain ownership of content you upload. By uploading content, you grant us a license
-                    to display and distribute your content as part of the Service. You are responsible for
-                    ensuring you have the rights to upload any content.
-                </p>
-            </section>
+                <section style={{ marginBottom: '2rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>3. Product & Service Descriptions</h2>
+                    <p style={{ lineHeight: '1.6', color: '#aaa' }}>
+                        All efforts are made to ensure accuracy in product descriptions, images, pricing, and availability.
+                        However, we do not warrant that product descriptions or other content are complete, current, or error-free.
+                    </p>
+                </section>
 
-            <section className={styles.section}>
-                <h2>5. Prohibited Uses</h2>
-                <ul>
-                    <li>Uploading illegal, harmful, or offensive content</li>
-                    <li>Impersonating others or providing false information</li>
-                    <li>Attempting to gain unauthorized access to the Service</li>
-                    <li>Using the Service to send spam or unsolicited messages</li>
-                    <li>Interfering with the proper functioning of the Service</li>
-                </ul>
-            </section>
+                <section style={{ marginBottom: '2rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>4. Order Acceptance & Cancellation</h2>
+                    <p style={{ lineHeight: '1.6', color: '#aaa' }}>
+                        Placing an order on this website does not constitute a confirmed order. We reserve the right to refuse or cancel any order for reasons including but not limited to product availability, pricing errors, or suspected fraud.
+                        Once placed, orders may not be canceled or modified unless otherwise stated in the return policy.
+                    </p>
+                </section>
 
-            <section className={styles.section}>
-                <h2>6. Payment Terms</h2>
-                <p>
-                    Paid plans are billed in advance on a monthly or annual basis. Payments are processed
-                    through Razorpay. Refunds are available within 7 days of purchase if you haven't used
-                    premium features extensively.
-                </p>
-            </section>
+                <section style={{ marginBottom: '2rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>5. Pricing and Payment</h2>
+                    <p style={{ lineHeight: '1.6', color: '#aaa' }}>
+                        All prices are displayed in INR or the local currency and are inclusive or exclusive of taxes as indicated.
+                        Payments must be made through secure and approved payment gateways. The website is not liable for any payment gateway errors.
+                    </p>
+                </section>
 
-            <section className={styles.section}>
-                <h2>7. Termination</h2>
-                <p>
-                    We may terminate or suspend your account at any time for violations of these terms.
-                    You may delete your account at any time through your account settings.
-                </p>
-            </section>
+                <section style={{ marginBottom: '2rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>6. Intellectual Property</h2>
+                    <p style={{ lineHeight: '1.6', color: '#aaa' }}>
+                        All text, graphics, logos, images, and other materials on this website are the intellectual property of their respective owners and protected by copyright and trademark laws.
+                        Unauthorized use or duplication of any materials is prohibited.
+                    </p>
+                </section>
 
-            <section className={styles.section}>
-                <h2>8. Limitation of Liability</h2>
-                <p>
-                    Profyld is provided "as is" without warranties. We are not liable for any indirect,
-                    incidental, or consequential damages arising from your use of the Service.
-                </p>
-            </section>
+                <section style={{ marginBottom: '2rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>7. Limitation of Liability</h2>
+                    <p style={{ lineHeight: '1.6', color: '#aaa' }}>
+                        We are not responsible for any indirect or consequential damages that may arise from the use or inability to use the website or the products purchased through it.
+                        Liability is limited to the value of the product purchased, if applicable.
+                    </p>
+                </section>
 
-            <section className={styles.section}>
-                <h2>9. Contact</h2>
-                <p>
-                    For questions about these Terms, please contact us at{' '}
-                    <a href="mailto:legal@profyld.com">legal@profyld.com</a>
-                </p>
-            </section>
+                <section style={{ marginBottom: '2rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>8. Modifications to Terms</h2>
+                    <p style={{ lineHeight: '1.6', color: '#aaa' }}>
+                        These terms may be revised at any time without prior notice. Continued use of the site after changes implies acceptance of those changes.
+                    </p>
+                </section>
+
+                <section style={{ marginBottom: '2rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>9. Governing Law</h2>
+                    <p style={{ lineHeight: '1.6', color: '#aaa' }}>
+                        These terms shall be governed by and construed in accordance with the laws of India.
+                    </p>
+                </section>
+            </div>
         </div>
     );
 }

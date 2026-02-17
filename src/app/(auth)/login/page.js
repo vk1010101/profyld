@@ -80,7 +80,7 @@ export default function LoginPage() {
   return (
     <div className={styles.authCard}>
       <div className={styles.authHeader}>
-        <div className={styles.logo}>profyld.</div>
+        <Link href="/" className={styles.logo} style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}>profyld.</Link>
         <h1 className={styles.title}>Sign In</h1>
         <p className={styles.subtitle}>Sign in to manage your portfolio</p>
       </div>

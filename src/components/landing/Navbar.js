@@ -9,7 +9,9 @@ export default function Navbar() {
 
     return (
         <nav className={styles.nav}>
-            <div className={styles.logo}>profyld.</div>
+            <Link href={user ? "/dashboard" : "/"} className={styles.logo} style={{ textDecoration: 'none', color: 'inherit' }}>
+                profyld.
+            </Link>
             <div className={styles.navLinks}>
                 <Link href="/pricing" className={styles.navLink}>Pricing</Link>
                 <Link href="/about" className={styles.navLink}>About</Link>

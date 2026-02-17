@@ -97,7 +97,9 @@ export default function VariantA() {
     <main className={styles.landing} ref={mainRef}>
       {/* Navbar */}
       <nav className={styles.nav}>
-        <div className={styles.logo}>profyld.</div>
+        <Link href={user ? "/dashboard" : "/"} className={styles.logo} style={{ textDecoration: 'none', color: 'inherit' }}>
+          profyld.
+        </Link>
         <div className={styles.navLinks}>
           <Link href="/pricing" className={styles.navLink}>Pricing</Link>
           <Link href="/about" className={styles.navLink}>About</Link>
@@ -254,7 +256,7 @@ export default function VariantA() {
                 Free CV Builder <span style={{ fontSize: '0.7em', background: '#eef', color: '#55a', padding: '2px 6px', borderRadius: '4px', marginLeft: '4px' }}>ATS</span>
               </Link>
               <Link href="/signup" className={styles.footerLink}>Portfolio Builder</Link>
-              <Link href="#" className={styles.footerLink}>Templates</Link>
+              {/* <Link href="#" className={styles.footerLink}>Templates</Link> */}
             </div>
           </div>
 
@@ -263,16 +265,19 @@ export default function VariantA() {
             <div className={styles.footerLinks}>
               <Link href="/pricing" className={styles.footerLink}>Pricing</Link>
               <Link href="/about" className={styles.footerLink}>About Us</Link>
-              <Link href="mailto:support@profyld.com" className={styles.footerLink}>Contact</Link>
+              <div className={styles.footerLink} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <a href="mailto:support@profyld.com" style={{ color: 'inherit', textDecoration: 'none' }}>support@profyld.com</a>
+                <a href="tel:+919289034558" style={{ color: 'inherit', textDecoration: 'none', fontSize: '0.9em', opacity: 0.8 }}>+91 92890 34558</a>
+              </div>
             </div>
           </div>
 
           <div className={styles.footerCol}>
             <h4>Legal</h4>
             <div className={styles.footerLinks}>
-              <Link href="#" className={styles.footerLink}>Terms & Conditions</Link>
-              <Link href="#" className={styles.footerLink}>Privacy Policy</Link>
-              <Link href="#" className={styles.footerLink}>Cookie Policy</Link>
+              <Link href="/terms" className={styles.footerLink}>Terms & Conditions</Link>
+              <Link href="/privacy" className={styles.footerLink}>Privacy Policy</Link>
+              <Link href="/cookie-policy" className={styles.footerLink}>Cookie Policy</Link>
             </div>
           </div>
         </div>
@@ -281,6 +286,6 @@ export default function VariantA() {
           &copy; {new Date().getFullYear()} profyld. All rights reserved.
         </div>
       </footer>
-    </main>
+    </main >
   );
 }
