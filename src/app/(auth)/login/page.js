@@ -79,7 +79,7 @@ export default function LoginPage() {
 
   return (
     <div className={styles.authContainer}>
-      <div style={{ position: 'absolute', top: '2rem', left: '2rem', zIndex: 20 }}>
+      <div style={{ position: 'fixed', top: '2rem', left: '2rem', zIndex: 20 }}>
         <Link href="/" style={{
           fontFamily: 'var(--font-playfair), "Playfair Display", serif',
           fontSize: '1.5rem',
