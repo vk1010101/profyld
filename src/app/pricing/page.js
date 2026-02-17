@@ -43,7 +43,6 @@ export default function PricingPage() {
                 'Custom Domain Connection',
                 'No "Powered by" Branding',
                 'Premium Themes (Glass, Neumorphic)',
-                'SEO Meta-Tags & OG Images',
                 'Visitor Analytics'
             ],
             cta: 'Go Pro',
@@ -167,6 +166,10 @@ export default function PricingPage() {
                         <div className={styles.faqItem}>
                             <h4 className={styles.faqQuestion}>Is the Basic fee really one-time?</h4>
                             <p className={styles.faqAnswer}>Yes, for the Basic tier, you pay ₹200 once and keep your `username.profyld.com` link forever.</p>
+                        </div>
+                        <div className={styles.faqItem}>
+                            <h4 className={styles.faqQuestion}>How are refunds initiated?</h4>
+                            <p className={styles.faqAnswer}>If refund approved, you&apos;ll be automatically refunded on your original payment method within 5-10 business days.</p>
                         </div>
                     </div>
                 </div>
