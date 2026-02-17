@@ -79,6 +79,13 @@ export default function PrivacyPage() {
                         This privacy policy may be updated periodically. Continued use of the website after changes indicates acceptance of the revised policy.
                     </p>
                 </section>
+
+                <section style={{ marginBottom: '2rem' }}>
+                    <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>9. Contact Us</h2>
+                    <p style={{ lineHeight: '1.6', color: '#aaa' }}>
+                        If you have any questions about this Privacy Policy, please contact us at <a href="mailto:support@profyld.com" style={{ color: '#fff', textDecoration: 'underline' }}>support@profyld.com</a>.
+                    </p>
+                </section>
             </div>
         </div>
     );
