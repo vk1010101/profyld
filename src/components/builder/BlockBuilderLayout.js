@@ -23,10 +23,10 @@ const BlockBuilderLayout = ({ isFullscreen = false, onExitFullscreen }) => {
     const [username, setUsername] = useState('viditkohli'); // TODO: Fetch from context if available
 
     // Theme Management
-    const [theme, setTheme] = useState('dark');
+    const [theme, setTheme] = useState('light');
 
     useEffect(() => {
-        const savedTheme = localStorage.getItem('dashboard-theme') || 'dark';
+        const savedTheme = localStorage.getItem('dashboard-theme') || 'light';
         setTheme(savedTheme);
         document.documentElement.setAttribute('data-theme', savedTheme);
     }, []);

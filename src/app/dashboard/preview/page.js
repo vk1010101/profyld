@@ -11,6 +11,7 @@ import { useTheme } from '@/components/context/ThemeContext';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import styles from './preview.module.css';
+import TourOverlay from '@/components/onboarding/TourOverlay';
 
 // Components for rendering
 import Navbar from '@/components/Navbar';
@@ -55,6 +56,8 @@ export default function LiveEditorPage() {
     const { updateProfile } = useProfile();
     const supabase = getClient();
     const { changeTheme } = useTheme();
+
+    const [showTour, setShowTour] = useState(false);
 
     const [device, setDevice] = useState('desktop');
     const [activeSection, setActiveSection] = useState(null);
@@ -260,6 +263,56 @@ export default function LiveEditorPage() {
     useEffect(() => {
         fetchPortfolioData();
     }, [fetchPortfolioData]);
+
+    // Onboarding check - Start Tour directly
+    useEffect(() => {
+        const hasSeen = localStorage.getItem('onboarding_completed_v1');
+        // Only show if not seen and data is loaded, and not already builder enabled
+        if (!hasSeen && !loading && user && !profile?.has_blocks) {
+            const timer = setTimeout(() => setShowTour(true), 1500); // Start Tour directly
+            return () => clearTimeout(timer);
+        }
+    }, [loading, user, profile?.has_blocks]);
+
+    // Removed handleThemeSelect and handleTourStart as they were for the modal
+
+    const handleTourComplete = () => {
+        setShowTour(false);
+        localStorage.setItem('onboarding_completed_v1', 'true');
+    };
+
+    const handleTourSkip = () => {
+        setShowTour(false);
+        localStorage.setItem('onboarding_completed_v1', 'true');
+    };
+
+    const tourSteps = [
+        {
+            target: 'device-toggle-container',
+            title: 'Device Preview',
+            content: 'Switch between Desktop, Tablet, and Mobile views to ensure your site looks great on every screen.'
+        },
+        {
+            target: 'section-dropdown-container',
+            title: 'Quick Navigation',
+            content: 'Use this dropdown to quickly jump to any section of your portfolio for editing.'
+        },
+        {
+            target: 'preview-canvas-container',
+            title: 'Visual Editing',
+            content: 'This is your live canvas. Click on any section (Hero, About, etc.) to immediately edit its content and style.'
+        },
+        {
+            target: 'builder-toggle-btn',
+            title: 'Advanced Builder',
+            content: 'Want total control? Enable the Advanced Builder to drag and drop blocks and customize your layout completely.'
+        },
+        {
+            target: 'view-live-btn',
+            title: 'Go Live',
+            content: 'View your actual live website as visitors will see it. Don\'t forget to share your link!'
+        }
+    ];
 
     const handleEditChange = (field, value) => {
         setEditData(prev => ({ ...prev, [field]: value }));
@@ -497,7 +550,7 @@ export default function LiveEditorPage() {
             <div className={styles.editorToolbar}>
                 <div className={styles.toolbarLeft}>
                     <h2 className={styles.editorTitle}>Live Editor</h2>
-                    <div className={styles.deviceToggle}>
+                    <div id="device-toggle-container" className={styles.deviceToggle}>
                         {devicePresets.map((preset) => {
                             const Icon = preset.icon;
                             return (
@@ -514,7 +567,7 @@ export default function LiveEditorPage() {
                     </div>
 
                     {/* Section Dropdown */}
-                    <div className={styles.sectionDropdown}>
+                    <div id="section-dropdown-container" className={styles.sectionDropdown}>
                         <select
                             onChange={(e) => {
                                 const el = document.getElementById(`preview-${e.target.value}`);
@@ -539,6 +592,7 @@ export default function LiveEditorPage() {
                         variant="secondary"
                         className="text-xs py-1 h-8"
                         disabled={saving}
+                        id="builder-toggle-btn"
                     >
                         {saving ? 'Loading...' : isBuilderEnabled ? '✦ Advanced Builder' : '✦ Enable Advanced Builder'}
                     </Button>
@@ -551,7 +605,7 @@ export default function LiveEditorPage() {
                             Reset to Default
                         </button>
                     )}
-                    <a href={`/u/${profile?.username}`} target="_blank" className={styles.iconBtn} title="Open Live Site">
+                    <a href={`/u/${profile?.username}`} target="_blank" className={styles.iconBtn} title="Open Live Site" id="view-live-btn">
                         <RefreshCw size={16} />
                     </a>
                     {profile?.username && (
@@ -579,7 +633,7 @@ export default function LiveEditorPage() {
             {/* Main Editor Area */}
             <div className={styles.editorMain}>
                 {/* Preview Canvas */}
-                <div className={styles.previewCanvas}>
+                <div id="preview-canvas-container" className={styles.previewCanvas}>
                     <div
                         className={styles.previewFrame}
                         style={{
@@ -795,22 +849,24 @@ export default function LiveEditorPage() {
                             )}
 
                             {backgroundType === 'gradient' && (
-                                <div className={styles.editField}>
-                                    <label>Direction</label>
-                                    <select
-                                        value={sectionSettings[activeSection]?.gradientDirection || 'to bottom right'}
-                                        onChange={(e) => {
-                                            setSectionSettings(prev => ({
-                                                ...prev,
-                                                [activeSection]: { ...prev[activeSection], gradientDirection: e.target.value, backgroundType: 'gradient' }
-                                            }));
-                                        }}
-                                        style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
-                                    >
-                                        <option value="to bottom right">Diagonal (Bottom Right)</option>
-                                        <option value="to right">Horizontal</option>
-                                        <option value="to bottom">Vertical</option>
-                                    </select>
+                                <div>
+                                    <div className={styles.editField}>
+                                        <label>Direction</label>
+                                        <select
+                                            value={sectionSettings[activeSection]?.gradientDirection || 'to bottom right'}
+                                            onChange={(e) => {
+                                                setSectionSettings(prev => ({
+                                                    ...prev,
+                                                    [activeSection]: { ...prev[activeSection], gradientDirection: e.target.value, backgroundType: 'gradient' }
+                                                }));
+                                            }}
+                                        >
+                                            <option value="to bottom right">Diagonal</option>
+                                            <option value="to right">Horizontal</option>
+                                            <option value="to bottom">Vertical</option>
+                                        </select>
+                                    </div>
+
 
                                     <div style={{ marginTop: '16px' }}>
                                         <label>Start Color</label>
@@ -841,28 +897,30 @@ export default function LiveEditorPage() {
                                             />
                                         </div>
                                     </div>
-                                </div>
+                                </div >
                             )}
 
-                            {backgroundType === 'image' && (
-                                <div className={styles.editField}>
-                                    <label>Image URL</label>
-                                    <Input
-                                        value={sectionSettings[activeSection]?.backgroundImage || ''}
-                                        onChange={(e) => {
-                                            setSectionSettings(prev => ({
-                                                ...prev,
-                                                [activeSection]: { ...prev[activeSection], backgroundImage: e.target.value, backgroundType: 'image' }
-                                            }));
-                                        }}
-                                        placeholder="https://example.com/image.jpg"
-                                    />
-                                    <p style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
-                                        Paste a direct link to an image.
-                                    </p>
-                                </div>
-                            )}
-                        </div>
+                            {
+                                backgroundType === 'image' && (
+                                    <div className={styles.editField}>
+                                        <label>Image URL</label>
+                                        <Input
+                                            value={sectionSettings[activeSection]?.backgroundImage || ''}
+                                            onChange={(e) => {
+                                                setSectionSettings(prev => ({
+                                                    ...prev,
+                                                    [activeSection]: { ...prev[activeSection], backgroundImage: e.target.value, backgroundType: 'image' }
+                                                }));
+                                            }}
+                                            placeholder="https://example.com/image.jpg"
+                                        />
+                                        <p style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
+                                            Paste a direct link to an image.
+                                        </p>
+                                    </div>
+                                )
+                            }
+                        </div >
                     )}
 
                     <div className={styles.editPanelBody}>
@@ -1067,18 +1125,29 @@ export default function LiveEditorPage() {
                             {saved ? 'Saved!' : 'Save Changes'}
                         </Button>
                     </div>
-                </div>
-            )}
+                </div >
+            )
+            }
 
             {/* ===== Fullscreen Advanced Builder Overlay ===== */}
-            {showAdvancedBuilder && (
-                <BuilderProvider value={builderContextValue}>
-                    <BlockBuilderLayout
-                        isFullscreen={true}
-                        onExitFullscreen={handleExitFullscreen}
-                    />
-                </BuilderProvider>
-            )}
-        </div>
+            {
+                showAdvancedBuilder && (
+                    <BuilderProvider value={builderContextValue}>
+                        <BlockBuilderLayout
+                            isFullscreen={true}
+                            onExitFullscreen={handleExitFullscreen}
+                        />
+                    </BuilderProvider>
+                )
+            }
+
+
+            <TourOverlay
+                steps={tourSteps}
+                isOpen={showTour}
+                onComplete={handleTourComplete}
+                onSkip={handleTourSkip}
+            />
+        </div >
     );
 }

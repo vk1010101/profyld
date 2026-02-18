@@ -11,10 +11,10 @@ import styles from './DashboardHeader.module.css';
 export default function DashboardHeader({ onMenuClick, profile }) {
   const router = useRouter();
   const { signOut } = useAuth();
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('dashboard-theme') || 'dark';
+    const savedTheme = localStorage.getItem('dashboard-theme') || 'light';
     setTheme(savedTheme);
     document.documentElement.setAttribute('data-theme', savedTheme);
   }, []);

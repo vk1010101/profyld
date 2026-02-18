@@ -90,7 +90,9 @@ export async function middleware(request) {
         if (isDashboardPage && !session) {
             return NextResponse.redirect(new URL('/login', request.url));
         }
-        if (isAuthPage && session) {
+        // Only redirect from login page if already authenticated
+        // Signup page must stay rendered after account creation for the theme selection overlay
+        if (pathname.startsWith('/login') && session) {
             return NextResponse.redirect(new URL('/dashboard', request.url));
         }
 

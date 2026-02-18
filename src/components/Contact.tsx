@@ -157,7 +157,7 @@ const Contact = ({
                         {renderContent}
                     </FreeFormSection>
                 ) : (
-                    <div style={{ position: 'relative', height: '600px', width: '100%' }}>
+                    <div style={{ position: 'relative', minHeight: '600px', width: '100%' }}>
                         {renderContent(null, () => { }, null, elementPositions, false, [])}
                     </div>
                 )}

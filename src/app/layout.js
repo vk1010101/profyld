@@ -15,12 +15,28 @@ const rajdhani = Rajdhani({
   display: "swap",
 });
 
-import { Playfair_Display } from "next/font/google";
+import { Playfair_Display, Cormorant_Garamond, Montserrat } from "next/font/google";
+
 const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "700", "900"],
   style: ["normal", "italic"],
   variable: "--font-playfair",
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -42,7 +58,7 @@ import { ThemeProvider } from "@/components/context/ThemeContext";
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${outfit.variable} ${rajdhani.variable} ${playfair.variable} antialiased`}>
+      <body suppressHydrationWarning className={`${outfit.variable} ${rajdhani.variable} ${playfair.variable} ${cormorant.variable} ${montserrat.variable} antialiased`}>
         <ThemeProvider>
           {children}
         </ThemeProvider>
