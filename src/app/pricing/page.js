@@ -43,11 +43,10 @@ export default function PricingPage() {
                 'Custom Domain Connection',
                 'No "Powered by" Branding',
                 'Premium Themes (Glass, Neumorphic)',
-                'SEO Meta-Tags & OG Images',
                 'Visitor Analytics'
             ],
             cta: 'Go Pro',
-            href: '/checkout/pro',
+            href: '/signup',
             popular: true,
             highlight: true
         },
@@ -65,7 +64,7 @@ export default function PricingPage() {
                 'Priority Support & Indexing'
             ],
             cta: 'Get Executive Access',
-            href: '/checkout/executive',
+            href: '/signup',
             popular: false,
             highlight: false
         }
