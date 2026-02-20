@@ -75,7 +75,7 @@ export function getGoogleFontsUrl(theme) {
 }
 
 /**
- * Default theme values
+ * Default theme values — includes all fields
  */
 export const defaultTheme = {
   primary: '#8B7355',
@@ -85,4 +85,9 @@ export const defaultTheme = {
   textSecondary: '#A0A0A0',
   headingFont: 'Cormorant Garamond',
   bodyFont: 'Montserrat',
+  backgroundType: 'mesh',
+  gradientColor1: '#0A0A0A',
+  gradientColor2: '#1a1510',
+  gradientDirection: 'to bottom right',
+  overlayOpacity: 0.5,
 };

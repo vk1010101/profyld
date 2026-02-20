@@ -107,17 +107,19 @@ export async function middleware(request) {
         // Create Supabase client to check subscription status
         const { supabase } = await createClient(request);
 
-        // Fetch profile to check tier
+        // Fetch profile to check tier AND get user_id for owner check
         const { data: profile } = await supabase
             .from('profiles')
-            .select('subscription_tier')
+            .select('subscription_tier, user_id')
             .eq('username', subdomain)
             .single();
 
-        // If user exists and is on free tier, redirect to locked page
-        // Note: You might want to allow the owner to view their own site if logged in?
-        // For now, adhering to strict "Public Link Locked" rule.
-        if (profile && (!profile.subscription_tier || profile.subscription_tier === 'free')) {
+        // Check if the visitor is the portfolio owner (logged in)
+        const { data: { session } } = await supabase.auth.getSession();
+        const isOwner = session?.user?.id && profile?.user_id && session.user.id === profile.user_id;
+
+        // Lock subdomain for free-tier users — but NOT for the owner themselves
+        if (!isOwner && profile && (!profile.subscription_tier || profile.subscription_tier === 'free')) {
             url.pathname = '/locked';
             url.searchParams.set('user', subdomain);
             return NextResponse.rewrite(url);

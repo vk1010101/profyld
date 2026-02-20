@@ -30,6 +30,9 @@ export const HEADING_FONTS = [
   { name: 'Bodoni Moda', value: 'Bodoni Moda' },
   { name: 'Abril Fatface', value: 'Abril Fatface' },
   { name: 'Fraunces', value: 'Fraunces' },
+  { name: 'Inter', value: 'Inter' },
+  { name: 'Outfit', value: 'Outfit' },
+  { name: 'Montserrat', value: 'Montserrat' },
 ];
 
 export const BODY_FONTS = [
@@ -41,115 +44,12 @@ export const BODY_FONTS = [
   { name: 'Raleway', value: 'Raleway' },
   { name: 'Work Sans', value: 'Work Sans' },
   { name: 'DM Sans', value: 'DM Sans' },
+  { name: 'Inter', value: 'Inter' },
 ];
 
-// Preset themes for quick selection
-export const PRESET_THEMES = [
-  {
-    id: 'elegant-dark',
-    name: 'Elegant Dark',
-    theme: {
-      primary: '#8B7355',
-      background: '#0A0A0A',
-      surface: '#1A1A1A',
-      textPrimary: '#FFFFFF',
-      textSecondary: '#A0A0A0',
-      headingFont: 'Cormorant Garamond',
-      bodyFont: 'Montserrat',
-    }
-  },
-  {
-    id: 'midnight-blue',
-    name: 'Midnight Blue',
-    theme: {
-      primary: '#5B8DEE',
-      background: '#0D1117',
-      surface: '#161B22',
-      textPrimary: '#F0F6FC',
-      textSecondary: '#8B949E',
-      headingFont: 'Playfair Display',
-      bodyFont: 'Open Sans',
-    }
-  },
-  {
-    id: 'forest-green',
-    name: 'Forest Green',
-    theme: {
-      primary: '#4ADE80',
-      background: '#0C1210',
-      surface: '#132218',
-      textPrimary: '#ECFDF5',
-      textSecondary: '#86EFAC',
-      headingFont: 'DM Serif Display',
-      bodyFont: 'Nunito',
-    }
-  },
-  {
-    id: 'warm-cream',
-    name: 'Warm Cream',
-    theme: {
-      primary: '#C08552',
-      background: '#FAF7F2',
-      surface: '#FFFFFF',
-      textPrimary: '#2D2A26',
-      textSecondary: '#6B6560',
-      headingFont: 'Libre Baskerville',
-      bodyFont: 'Lato',
-    }
-  },
-  {
-    id: 'sunset-orange',
-    name: 'Sunset Orange',
-    theme: {
-      primary: '#F97316',
-      background: '#1C1410',
-      surface: '#292018',
-      textPrimary: '#FFF7ED',
-      textSecondary: '#FDBA74',
-      headingFont: 'Bodoni Moda',
-      bodyFont: 'Work Sans',
-    }
-  },
-  {
-    id: 'royal-purple',
-    name: 'Royal Purple',
-    theme: {
-      primary: '#A855F7',
-      background: '#13111C',
-      surface: '#1E1B2E',
-      textPrimary: '#FAF5FF',
-      textSecondary: '#C4B5FD',
-      headingFont: 'Abril Fatface',
-      bodyFont: 'Raleway',
-    }
-  },
-  {
-    id: 'minimal-white',
-    name: 'Minimal White',
-    theme: {
-      primary: '#171717',
-      background: '#FFFFFF',
-      surface: '#F5F5F5',
-      textPrimary: '#0A0A0A',
-      textSecondary: '#525252',
-      headingFont: 'Fraunces',
-      bodyFont: 'DM Sans',
-    }
-  },
-  {
-    id: 'rose-gold',
-    name: 'Rose Gold',
-    theme: {
-      primary: '#E11D48',
-      background: '#1A1015',
-      surface: '#2D1F27',
-      textPrimary: '#FFF1F2',
-      textSecondary: '#FDA4AF',
-      headingFont: 'Crimson Pro',
-      bodyFont: 'Source Sans 3',
-    }
-  },
-];
+// Re-export unified themes from themes.js
+// The old PRESET_THEMES name is kept as an alias for backward compatibility
+export { THEMES as PRESET_THEMES } from '@/lib/themes';
 
 // Social platform options
 export const SOCIAL_PLATFORMS = [

@@ -119,6 +119,7 @@ const BlockRenderer = memo(({ block, isPublic = false }) => {
                 gradientColor2: cleanConfig.gradientColor2 || data.theme?.gradientColor2,
                 gradientDirection: cleanConfig.gradientDirection || data.theme?.gradientDirection,
                 overlayOpacity: cleanConfig.overlayOpacity || data.theme?.overlayOpacity,
+                primaryColor: data.theme?.primary,
             };
             break;
         case 'about':

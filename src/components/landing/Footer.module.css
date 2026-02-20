@@ -1,0 +1,131 @@
+.footer {
+    padding: 4rem 2rem;
+    background: #fafafc;
+    border-top: 1px solid #eaeaea;
+    color: #333;
+}
+
+/* Dark mode support if applicable via parent class or globals */
+@media (prefers-color-scheme: dark) {
+    .footer {
+        background: #111;
+        border-top: 1px solid #222;
+        color: #eee;
+    }
+}
+
+/* Dark mode support via prop */
+.dark {
+    background: #050505;
+    border-top: 1px solid #1a1a1a;
+    color: #e0faff;
+    /* Matching Variant B text color if possible, or generic light */
+}
+
+.dark .desc {
+    opacity: 0.6;
+}
+
+.dark .footerLink {
+    opacity: 0.7;
+}
+
+.dark .footerLink:hover {
+    color: #00ffff;
+    opacity: 1;
+}
+
+/* Cyber accent for dark mode? Or stick to gold? User said "footer from variant A". Variant A has gold accent. But Variant B is cyan. Adaptability is better. */
+
+/* Use CSS variables for hover if available, else fallback */
+.dark .footerLink:hover {
+    color: var(--accent-color, #c0a878);
+}
+
+/* Force dark theme override if parent dictates */
+:global(.dark) .footer {
+    background: #050505;
+    border-top: 1px solid #222;
+    color: #eee;
+}
+
+.footerGrid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.footerCol {
+    display: flex;
+    flex-direction: column;
+}
+
+.footerCol h4 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: inherit;
+    /* Inherit from footer color */
+    opacity: 0.9;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: inherit;
+}
+
+.desc {
+    color: inherit;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.7;
+}
+
+.footerLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footerLink {
+    color: inherit;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+    opacity: 0.6;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+    font-family: inherit;
+}
+
+.footerLink:hover {
+    color: var(--accent-color, #c0a878);
+    opacity: 1;
+}
+
+.footerCopyright {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: inherit;
+    font-size: 0.85rem;
+    opacity: 0.5;
+}
+
+.atsBadge {
+    font-size: 0.7em;
+    background: #eef;
+    color: #55a;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+    vertical-align: middle;
+}

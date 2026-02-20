@@ -8,6 +8,7 @@ import {
   FolderOpen, Image, Link2, X, Settings, Eye, LayoutDashboard, Monitor, Globe,
   ChevronDown, CheckCircle, AlertCircle, Shield, Search
 } from 'lucide-react';
+import { getPortfolioUrl } from '@/lib/utils/portfolio';
 import styles from './Sidebar.module.css';
 
 // Main navigation items
@@ -221,7 +222,7 @@ export default function Sidebar({ isOpen, onClose, profile }) {
         {profile?.username && (
           <div className={styles.sidebarFooter}>
             <Link
-              href={`/u/${profile.username}`}
+              href={getPortfolioUrl(profile.username)}
               target="_blank"
               className={styles.viewSite}
             >

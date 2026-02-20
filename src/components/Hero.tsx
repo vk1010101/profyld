@@ -8,8 +8,10 @@ import { useTheme } from "@/components/context/ThemeContext";
 import FreeFormElement from "@/components/builder/freeform/FreeFormElement";
 // @ts-ignore
 import FreeFormSection from "@/components/builder/freeform/FreeFormSection";
+// @ts-ignore
+import BackgroundEffect from "@/components/effects/BackgroundEffect";
 
-type BackgroundType = 'image' | 'color' | 'gradient';
+type BackgroundType = 'image' | 'color' | 'gradient' | 'mesh' | 'aurora' | 'dots' | 'waves' | 'grain' | 'orbs';
 
 interface ExtendedHeroProps extends HeroProps {
     backgroundType?: BackgroundType;
@@ -19,6 +21,8 @@ interface ExtendedHeroProps extends HeroProps {
     gradientColor2?: string;
     gradientDirection?: string;
     overlayOpacity?: number;
+    // Effect props — passed explicitly so effects work on public pages without ThemeContext
+    primaryColor?: string;
     // Smart Block Props
     title?: string;
     subtitle?: string;
@@ -28,6 +32,9 @@ interface ExtendedHeroProps extends HeroProps {
     blockId?: string;
     elementPositions?: Record<string, { x: number; y: number; w: number; h: number }>;
 }
+
+// Effect-based background types that use BackgroundEffect component
+const EFFECT_TYPES = ['mesh', 'aurora', 'dots', 'waves', 'grain', 'orbs'];
 
 const Hero = ({
     personal = {} as PersonalInfo,
@@ -43,6 +50,7 @@ const Hero = ({
     gradientColor2 = '#0a0a0a',
     gradientDirection = 'to bottom right',
     overlayOpacity = 0.7,
+    primaryColor: primaryColorProp,
     freeFormEnabled = false,
     blockId,
     elementPositions = {},
@@ -56,8 +64,19 @@ const Hero = ({
     const { themeConfig } = useTheme();
     const heroGradient = themeConfig?.heroGradient || { start: '#1a1a1a', end: '#0a0a0a', direction: 'to bottom right' };
 
+    // Check if the current type is an effect type
+    const isEffectType = EFFECT_TYPES.includes(backgroundType);
+
     // Generate background style based on type
     const getBackgroundStyle = (): React.CSSProperties => {
+        // For effect types, use the gradient as the base background
+        if (isEffectType) {
+            const g1 = gradientColor1 !== '#1a1a1a' ? gradientColor1 : heroGradient.start;
+            const g2 = gradientColor2 !== '#0a0a0a' ? gradientColor2 : heroGradient.end;
+            const dir = gradientDirection !== 'to bottom right' ? gradientDirection : heroGradient.direction;
+            return { background: `linear-gradient(${dir}, ${g1}, ${g2})` };
+        }
+
         switch (backgroundType) {
             case 'image':
                 return heroImage
@@ -73,6 +92,10 @@ const Hero = ({
                 return { background: `linear-gradient(${dir}, ${g1}, ${g2})` };
         }
     };
+
+    // Get primary color for effects — prefer explicit prop, then ThemeContext, then default
+    const primaryColor = primaryColorProp || themeConfig?.colors?.primary || '#8B7355';
+    const bgColor = backgroundColor || themeConfig?.colors?.background || '#0A0A0A';
 
     // Render hero content — either with free-form wrappers or normally
     const renderContent = (
@@ -166,6 +189,14 @@ const Hero = ({
 
     return (
         <section className={styles.hero} style={getBackgroundStyle()}>
+            {/* Render animated background effect if selected */}
+            {isEffectType && (
+                <BackgroundEffect
+                    effect={backgroundType}
+                    primaryColor={primaryColor}
+                    backgroundColor={bgColor}
+                />
+            )}
             <div
                 className={styles.overlay}
                 style={{ opacity: overlayOpacity > 1 ? overlayOpacity / 100 : overlayOpacity }}

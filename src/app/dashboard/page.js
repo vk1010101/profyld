@@ -10,6 +10,7 @@ import NextSteps from '@/components/dashboard/NextSteps'
 import PerformanceInsights from '@/components/dashboard/PerformanceInsights'
 import RecentActivity from '@/components/dashboard/RecentActivity'
 import DashboardSkeleton from '@/components/dashboard/DashboardSkeleton'
+import { getPortfolioUrl } from '@/lib/utils/portfolio'
 import styles from './page.module.css'
 
 export default function DashboardPage() {
@@ -214,7 +215,7 @@ export default function DashboardPage() {
     },
   ]
 
-  const portfolioUrl = profile?.username ? `/u/${profile.username}` : null
+  const portfolioUrl = profile?.username ? getPortfolioUrl(profile.username) : null
 
   if (loading) {
     return <DashboardSkeleton />

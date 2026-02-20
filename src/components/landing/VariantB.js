@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Suspense, useState, useEffect, useRef } from 'react';
+import Footer from '@/components/landing/Footer';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Scene3D from '@/components/landing/Scene3D';
@@ -54,7 +55,7 @@ export default function VariantB() {
     }, { scope: containerRef, dependencies: [mounted] });
 
     return (
-        <main className={styles.container} ref={containerRef}>
+        <main className={styles.container} ref={containerRef} style={{ minHeight: '100vh', height: 'auto', overflow: 'visible' }}>
             {/* 3D Scene Layer */}
             <div className={styles.sceneContainer}>
                 {mounted && (
@@ -68,7 +69,7 @@ export default function VariantB() {
             {!mounted && <div className={styles.loader}>INITIALIZING SYSTEM...</div>}
 
             {/* UI Overlay Layer */}
-            <div className={styles.overlay}>
+            <div className={styles.overlay} style={{ height: 'auto', minHeight: '100vh' }}>
                 <nav className={styles.nav}>
                     <div className={styles.logo}>
                         <div className={styles.logoIcon} />
@@ -124,18 +125,7 @@ export default function VariantB() {
                     </div>
                 </section>
 
-                <footer className={styles.footer}>
-                    <div className={styles.footerInfo}>
-                        <span className={styles.code}>V.2.0.4</span>
-                        <span className={styles.code}>LAT: 34.0522</span>
-                        <span className={styles.code}>LON: -118.2437</span>
-                    </div>
-                    <div className={styles.footerLinks}>
-                        <Link href="/terms" className={styles.code}>TERMS</Link>
-                        <Link href="/privacy" className={styles.code}>PRIVACY</Link>
-                        <Link href="/pricing" className={styles.code}>PRICING</Link>
-                    </div>
-                </footer>
+                <Footer currentVariant="dark" />
             </div>
 
             {/* Overlay Grid/Scanlines */}

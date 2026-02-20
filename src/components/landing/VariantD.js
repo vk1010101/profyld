@@ -7,6 +7,7 @@ import { ArrowRight, FileText, Download, Sparkles, CheckCircle } from 'lucide-re
 
 gsap.registerPlugin(ScrollTrigger);
 import CVBuilder from './CVBuilder/CVBuilder';
+import Footer from '@/components/landing/Footer';
 import styles from './VariantD.module.css';
 
 export default function VariantD() {
@@ -247,6 +248,8 @@ export default function VariantD() {
                     </div>
                 </div>
             </section>
+
+            <Footer />
         </div>
     );
 }

@@ -12,6 +12,8 @@ import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import styles from './preview.module.css';
 import TourOverlay from '@/components/onboarding/TourOverlay';
+import { getPortfolioUrl, openPortfolio } from '@/lib/utils/portfolio';
+import { applyTheme, getGoogleFontsUrl } from '@/lib/utils/theme';
 
 // Components for rendering
 import Navbar from '@/components/Navbar';
@@ -264,26 +266,49 @@ export default function LiveEditorPage() {
         fetchPortfolioData();
     }, [fetchPortfolioData]);
 
-    // Onboarding check - Start Tour directly
+    // Load Google Fonts + apply CSS variables when theme changes
     useEffect(() => {
-        const hasSeen = localStorage.getItem('onboarding_completed_v1');
-        // Only show if not seen and data is loaded, and not already builder enabled
-        if (!hasSeen && !loading && user && !profile?.has_blocks) {
-            const timer = setTimeout(() => setShowTour(true), 1500); // Start Tour directly
+        const theme = portfolioData?.profile?.theme;
+        if (!theme) return;
+
+        // Apply CSS variables for fonts, colors etc.
+        applyTheme(theme);
+
+        // Dynamically inject Google Fonts <link> if not already present
+        const fontsUrl = getGoogleFontsUrl(theme);
+        const existing = document.querySelector(`link[href="${fontsUrl}"]`);
+        if (!existing) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = fontsUrl;
+            document.head.appendChild(link);
+        }
+    }, [portfolioData?.profile?.theme]);
+
+    // Onboarding check - Start Tour directly (uses DB flag, not localStorage)
+    useEffect(() => {
+        if (!user?.id || loading) return;
+        // Show tour if user hasn't completed onboarding and doesn't have advanced builder
+        if (!profile?.onboarding_completed && !profile?.has_blocks) {
+            const timer = setTimeout(() => setShowTour(true), 1500);
             return () => clearTimeout(timer);
         }
-    }, [loading, user, profile?.has_blocks]);
+    }, [loading, user, profile?.onboarding_completed, profile?.has_blocks]);
 
-    // Removed handleThemeSelect and handleTourStart as they were for the modal
-
-    const handleTourComplete = () => {
+    const handleTourComplete = async () => {
         setShowTour(false);
-        localStorage.setItem('onboarding_completed_v1', 'true');
+        // Persist to database so it works across devices
+        if (user?.id) {
+            await updateProfile({ onboarding_completed: true });
+        }
     };
 
-    const handleTourSkip = () => {
+    const handleTourSkip = async () => {
         setShowTour(false);
-        localStorage.setItem('onboarding_completed_v1', 'true');
+        // Persist to database so it works across devices
+        if (user?.id) {
+            await updateProfile({ onboarding_completed: true });
+        }
     };
 
     const tourSteps = [
@@ -605,22 +630,13 @@ export default function LiveEditorPage() {
                             Reset to Default
                         </button>
                     )}
-                    <a href={`/u/${profile?.username}`} target="_blank" className={styles.iconBtn} title="Open Live Site" id="view-live-btn">
+                    <button onClick={() => openPortfolio(profile?.username)} className={styles.iconBtn} title="Open Live Site" id="view-live-btn">
                         <RefreshCw size={16} />
-                    </a>
+                    </button>
                     {profile?.username && (
                         <button
-                            onClick={() => {
-                                const protocol = window.location.protocol;
-                                const host = window.location.host;
-                                const rootDomain = host.includes('localhost') ? 'localhost:3000' : 'profyld.com';
-                                if (host.includes('localhost')) {
-                                    window.open(`/u/${profile.username}`, '_blank');
-                                } else {
-                                    window.open(`${protocol}//${profile.username}.${rootDomain}`, '_blank');
-                                }
-                            }}
-                            className={styles.iconBtn} // Reusing button style or just inline
+                            onClick={() => openPortfolio(profile.username)}
+                            className={styles.iconBtn}
                             style={{ display: 'flex', alignItems: 'center', gap: '6px', background: '#333', color: '#fff', border: 'none', padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}
                         >
                             <ExternalLink size={14} />
@@ -664,6 +680,7 @@ export default function LiveEditorPage() {
                                                 gradientColor2={theme.gradientColor2}
                                                 gradientDirection={theme.gradientDirection}
                                                 overlayOpacity={theme.overlayOpacity}
+                                                primaryColor={theme.primary}
                                             />
                                         </div>
                                     </div>

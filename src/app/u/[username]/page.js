@@ -158,6 +158,7 @@ export default async function PublicPortfolioPage({ params }) {
         gradientColor2={theme.gradientColor2}
         gradientDirection={theme.gradientDirection}
         overlayOpacity={theme.overlayOpacity}
+        primaryColor={theme.primary}
       />
 
       {sectionVisibility.about && (

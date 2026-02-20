@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Save, Check, Image, Palette, Layers, Upload, X } from 'lucide-react';
 import { getClient } from '@/lib/supabase/client';
-import { PRESET_THEMES, HEADING_FONTS, BODY_FONTS } from '@/lib/constants';
+import { THEMES } from '@/lib/themes';
+import { HEADING_FONTS, BODY_FONTS } from '@/lib/constants';
 import { defaultTheme } from '@/lib/utils/theme';
 import Button from '@/components/ui/Button';
 import styles from './theme.module.css';
@@ -19,18 +20,19 @@ const GRADIENT_DIRECTIONS = [
   { value: 'to top left', label: 'Diagonal ↖' },
 ];
 
-const defaultBackgroundSettings = {
-  backgroundType: 'gradient',
-  heroImage: '',
-  backgroundColor: '#1a1a1a',
-  gradientColor1: '#1a1a1a',
-  gradientColor2: '#0a0a0a',
-  gradientDirection: 'to bottom right',
-  overlayOpacity: 0.7,
-};
+const EFFECT_TYPES = ['mesh', 'aurora', 'dots', 'waves', 'grain', 'orbs'];
+
+const EFFECT_META = [
+  { id: 'mesh', label: 'Mesh', emoji: '🌈' },
+  { id: 'aurora', label: 'Aurora', emoji: '🌌' },
+  { id: 'dots', label: 'Dot Grid', emoji: '⚬' },
+  { id: 'waves', label: 'Waves', emoji: '🌊' },
+  { id: 'grain', label: 'Film Grain', emoji: '📽️' },
+  { id: 'orbs', label: 'Orbs', emoji: '🔮' },
+];
 
 export default function ThemePage() {
-  const [theme, setTheme] = useState({ ...defaultTheme, ...defaultBackgroundSettings });
+  const [theme, setTheme] = useState({ ...defaultTheme });
   const [profile, setProfile] = useState(null);
   const [selectedPreset, setSelectedPreset] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -42,6 +44,25 @@ export default function ThemePage() {
   useEffect(() => {
     fetchTheme();
   }, []);
+
+  // Dynamically load Google Fonts whenever fonts change so previews render correctly
+  useEffect(() => {
+    if (!theme.headingFont && !theme.bodyFont) return;
+    const families = [theme.headingFont, theme.bodyFont]
+      .filter(Boolean)
+      .map(f => `family=${encodeURIComponent(f)}:wght@300;400;500;600;700`)
+      .join('&');
+    const url = `https://fonts.googleapis.com/css2?${families}&display=swap`;
+
+    // Don't add duplicates
+    const existing = document.querySelector(`link[href="${url}"]`);
+    if (!existing) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = url;
+      document.head.appendChild(link);
+    }
+  }, [theme.headingFont, theme.bodyFont]);
 
   const fetchTheme = async () => {
     const { data: { user } } = await supabase.auth.getUser();
@@ -56,7 +77,11 @@ export default function ThemePage() {
     if (!error && data) {
       setProfile(data);
       if (data.theme) {
-        setTheme({ ...defaultTheme, ...defaultBackgroundSettings, ...data.theme });
+        // Merge saved theme on top of defaults
+        setTheme({ ...defaultTheme, ...data.theme });
+        // Try to detect which preset matches
+        const match = THEMES.find(t => t.id === data.theme.id);
+        if (match) setSelectedPreset(match.id);
       }
     }
     setLoading(false);
@@ -67,8 +92,13 @@ export default function ThemePage() {
     setSelectedPreset(null);
   };
 
+  // Select a preset — spread ALL its properties (flat format) onto current theme
   const selectPreset = (preset) => {
-    setTheme(prev => ({ ...prev, ...preset.theme }));
+    const { _preview, ...themeData } = preset; // strip internal preview data
+    setTheme(prev => ({
+      ...prev,
+      ...themeData,
+    }));
     setSelectedPreset(preset.id);
   };
 
@@ -108,27 +138,15 @@ export default function ThemePage() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
+    // Strip _preview before saving to DB
+    const { _preview, ...themeToSave } = theme;
+
     await supabase
       .from('profiles')
-      .update({ theme })
+      .update({ theme: themeToSave })
       .eq('user_id', user.id);
 
     setSaving(false);
-  };
-
-  // Generate preview background style
-  const getPreviewStyle = () => {
-    switch (theme.backgroundType) {
-      case 'image':
-        return theme.heroImage
-          ? { backgroundImage: `url(${theme.heroImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }
-          : { background: `linear-gradient(${theme.gradientDirection}, ${theme.gradientColor1}, ${theme.gradientColor2})` };
-      case 'color':
-        return { backgroundColor: theme.backgroundColor };
-      case 'gradient':
-      default:
-        return { background: `linear-gradient(${theme.gradientDirection}, ${theme.gradientColor1}, ${theme.gradientColor2})` };
-    }
   };
 
   if (loading) {
@@ -145,7 +163,62 @@ export default function ThemePage() {
         </Button>
       </div>
 
-      {/* Background Type Toggle */}
+      {/* ── Preset Themes ── */}
+      <section className={styles.section}>
+        <h2>Choose a Theme</h2>
+        <div className={styles.presetsGrid}>
+          {THEMES.map(preset => (
+            <button
+              key={preset.id}
+              className={`${styles.presetCard} ${selectedPreset === preset.id ? styles.selected : ''}`}
+              onClick={() => selectPreset(preset)}
+              style={{
+                '--preset-bg': preset.background,
+                '--preset-primary': preset.primary,
+                '--preset-surface': preset.surface,
+                '--preset-gradient1': preset.gradientColor1,
+                '--preset-gradient2': preset.gradientColor2,
+                '--preset-gradient-dir': preset.gradientDirection,
+              }}
+            >
+              {/* Gradient preview bar */}
+              <div className={styles.presetPreview}>
+                <div className={styles.previewAccent} />
+                {preset.backgroundType && !['gradient', 'color', 'image'].includes(preset.backgroundType) && (
+                  <span className={styles.presetEffect}>{preset.backgroundType}</span>
+                )}
+              </div>
+
+              {/* Font preview */}
+              <span
+                className={styles.presetFontPreview}
+                style={{
+                  fontFamily: `"${preset.headingFont}", serif`,
+                  color: preset.textPrimary,
+                }}
+              >
+                Aa
+              </span>
+
+              {/* Theme name */}
+              <span className={styles.presetName}>{preset.name}</span>
+
+              {/* Color dots */}
+              <div className={styles.presetColors}>
+                <div className={styles.presetDot} style={{ background: preset.primary }} title="Primary" />
+                <div className={styles.presetDot} style={{ background: preset.background }} title="Background" />
+                <div className={styles.presetDot} style={{ background: preset.surface }} title="Surface" />
+              </div>
+
+              {selectedPreset === preset.id && (
+                <Check size={14} className={styles.checkIcon} />
+              )}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Background Type ── */}
       <section className={styles.section}>
         <h2>Background Type</h2>
         <div className={styles.backgroundToggle}>
@@ -172,8 +245,23 @@ export default function ThemePage() {
           </button>
         </div>
 
-        {/* Gradient Controls */}
-        {theme.backgroundType === 'gradient' && (
+        <h3 style={{ margin: '1.5rem 0 0.75rem', fontSize: '0.95rem', color: 'var(--text-secondary, #888)' }}>✨ Background Effects</h3>
+        <div className={styles.backgroundToggle} style={{ flexWrap: 'wrap' }}>
+          {EFFECT_META.map(effect => (
+            <button
+              key={effect.id}
+              className={`${styles.toggleBtn} ${theme.backgroundType === effect.id ? styles.active : ''}`}
+              onClick={() => updateTheme('backgroundType', effect.id)}
+              style={{ minWidth: '100px' }}
+            >
+              <span style={{ fontSize: '1.1rem' }}>{effect.emoji}</span>
+              {effect.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Gradient Controls — shown for gradient + effect types */}
+        {(theme.backgroundType === 'gradient' || EFFECT_TYPES.includes(theme.backgroundType)) && (
           <div className={styles.gradientControls}>
             <div className={styles.colorsGrid}>
               <div className={styles.colorPicker}>
@@ -199,7 +287,8 @@ export default function ThemePage() {
                 </div>
               </div>
             </div>
-            <div className={styles.selectWrapper}>
+
+            <div className={styles.directionSelect}>
               <label>Direction</label>
               <select
                 value={theme.gradientDirection}
@@ -213,18 +302,18 @@ export default function ThemePage() {
           </div>
         )}
 
-        {/* Solid Color Controls */}
+        {/* Solid Color Control */}
         {theme.backgroundType === 'color' && (
-          <div className={styles.solidColorControls}>
+          <div className={styles.gradientControls}>
             <div className={styles.colorPicker}>
               <label>Background Color</label>
               <div className={styles.colorInput}>
                 <input
                   type="color"
-                  value={theme.backgroundColor}
+                  value={theme.backgroundColor || theme.background}
                   onChange={(e) => updateTheme('backgroundColor', e.target.value)}
                 />
-                <span>{theme.backgroundColor}</span>
+                <span>{theme.backgroundColor || theme.background}</span>
               </div>
             </div>
           </div>
@@ -232,76 +321,56 @@ export default function ThemePage() {
 
         {/* Image Controls */}
         {theme.backgroundType === 'image' && (
-          <div className={styles.imageControls}>
-            <input
-              type="file"
-              ref={fileInputRef}
-              onChange={handleImageUpload}
-              accept="image/*"
-              style={{ display: 'none' }}
-            />
-            {theme.heroImage ? (
-              <div className={styles.uploadedImage}>
-                <img src={theme.heroImage} alt="Hero background" />
-                <button className={styles.removeBtn} onClick={removeImage}>
-                  <X size={16} /> Remove
+          <div className={styles.gradientControls}>
+            <div className={styles.imageUpload}>
+              <input
+                type="text"
+                placeholder="Image URL (https://...)"
+                value={theme.heroImage || ''}
+                onChange={(e) => updateTheme('heroImage', e.target.value)}
+                className={styles.urlInput}
+              />
+              <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+                <button
+                  className={styles.uploadBtn}
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={uploading}
+                >
+                  <Upload size={16} />
+                  {uploading ? 'Uploading...' : 'Upload Image'}
                 </button>
+                {theme.heroImage && (
+                  <button className={styles.removeBtn} onClick={removeImage}>
+                    <X size={16} /> Remove
+                  </button>
+                )}
               </div>
-            ) : (
-              <button
-                className={styles.uploadBtn}
-                onClick={() => fileInputRef.current?.click()}
-                disabled={uploading}
-              >
-                <Upload size={20} />
-                {uploading ? 'Uploading...' : 'Upload Hero Image'}
-              </button>
-            )}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                style={{ display: 'none' }}
+              />
+            </div>
           </div>
         )}
 
         {/* Overlay Opacity */}
         <div className={styles.sliderWrapper}>
-          <label>Overlay Opacity: {Math.round(theme.overlayOpacity * 100)}%</label>
+          <label>Overlay Opacity: {Math.round((theme.overlayOpacity || 0.5) * 100)}%</label>
           <input
             type="range"
             min="0"
             max="1"
             step="0.05"
-            value={theme.overlayOpacity}
+            value={theme.overlayOpacity || 0.5}
             onChange={(e) => updateTheme('overlayOpacity', parseFloat(e.target.value))}
           />
         </div>
       </section>
 
-      {/* Preset Themes */}
-      <section className={styles.section}>
-        <h2>Preset Themes</h2>
-        <div className={styles.presetsGrid}>
-          {PRESET_THEMES.map(preset => (
-            <button
-              key={preset.id}
-              className={`${styles.presetCard} ${selectedPreset === preset.id ? styles.selected : ''}`}
-              onClick={() => selectPreset(preset)}
-              style={{
-                '--preset-bg': preset.theme.background,
-                '--preset-primary': preset.theme.primary,
-                '--preset-surface': preset.theme.surface,
-              }}
-            >
-              <div className={styles.presetPreview}>
-                <div className={styles.previewAccent} />
-              </div>
-              <span>{preset.name}</span>
-              {selectedPreset === preset.id && (
-                <Check size={16} className={styles.checkIcon} />
-              )}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* Colors */}
+      {/* ── Colors ── */}
       <section className={styles.section}>
         <h2>Colors</h2>
         <div className={styles.colorsGrid}>
@@ -367,7 +436,7 @@ export default function ThemePage() {
         </div>
       </section>
 
-      {/* Fonts */}
+      {/* ── Typography ── */}
       <section className={styles.section}>
         <h2>Typography</h2>
         <div className={styles.fontsGrid}>

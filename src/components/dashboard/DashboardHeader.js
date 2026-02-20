@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Menu, LogOut, Sun, Moon, Sparkles, Share2 } from 'lucide-react';
 import { useAuth } from '@/lib/hooks/useAuth';
 import Button from '@/components/ui/Button';
+import { getPortfolioUrl } from '@/lib/utils/portfolio';
 import styles from './DashboardHeader.module.css';
 
 export default function DashboardHeader({ onMenuClick, profile }) {
@@ -33,7 +34,7 @@ export default function DashboardHeader({ onMenuClick, profile }) {
 
   const handleShare = async () => {
     if (profile?.username) {
-      const url = `${window.location.origin}/u/${profile.username}`;
+      const url = getPortfolioUrl(profile.username);
       try {
         await navigator.clipboard.writeText(url);
         // Could add a toast notification here

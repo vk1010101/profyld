@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Check, X, Loader2, Upload, FileText, Sparkles, Palette, ArrowRight } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { themes } from '@/lib/themes'
+import { themes, THEMES_MAP } from '@/lib/themes'
 import Turnstile from '@/components/ui/Turnstile'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
@@ -189,18 +189,10 @@ export default function SignupPage() {
 
   const handleThemeSelect = async (themeId) => {
     setSelectedThemeId(themeId)
-    if (userId && themes[themeId]) {
-      const selected = themes[themeId];
-      const themeToSave = {
-        id: themeId, name: selected.name,
-        primary: selected.colors.primary, background: selected.colors.background,
-        surface: selected.colors.accent || '#ffffff', textPrimary: selected.colors.text,
-        textSecondary: selected.colors.secondary,
-        headingFont: selected.fonts.heading.split(',')[0].replace(/['"]/g, ''),
-        bodyFont: selected.fonts.body.split(',')[0].replace(/['"]/g, ''),
-        gradientColor1: selected.heroGradient?.start, gradientColor2: selected.heroGradient?.end,
-        gradientDirection: selected.heroGradient?.direction,
-      }
+    // Use the unified THEMES_MAP to get the complete theme with all properties
+    const unified = THEMES_MAP[themeId];
+    if (userId && unified) {
+      const { _preview, ...themeToSave } = unified;
       supabase.from('profiles').update({ theme: themeToSave }).eq('user_id', userId).then(() => { })
     }
   }
@@ -347,6 +339,10 @@ export default function SignupPage() {
   const isFullScreen = step === 'design' || step === 'finishing'
 
   // ─── DESIGN STEP: Full-screen immersive theme picker ───
+  // Show only a curated subset during signup — keep it snappy, not overwhelming
+  const SIGNUP_THEME_IDS = ['cinematic', 'holographic', 'cyber-neon', 'royal-purple', 'rose-gold', 'midnight-blue', 'modern', 'elegant-dark'];
+  const signupThemes = Object.entries(themes).filter(([id]) => SIGNUP_THEME_IDS.includes(id));
+
   const renderDesignStep = () => (
     <div ref={overlayRef} style={{
       display: 'flex', flexDirection: 'column', alignItems: 'center',
@@ -377,12 +373,12 @@ export default function SignupPage() {
         </p>
       </div>
 
-      {/* Theme grid */}
+      {/* Theme grid — curated 8 */}
       <div style={{
         display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: '16px', width: '100%', maxWidth: '740px', marginBottom: '48px',
+        gap: '16px', width: '100%', maxWidth: '740px', marginBottom: '20px',
       }}>
-        {Object.entries(themes).map(([id, theme]) => {
+        {signupThemes.map(([id, theme]) => {
           const isSelected = selectedThemeId === id
           return (
             <button
@@ -434,6 +430,14 @@ export default function SignupPage() {
           )
         })}
       </div>
+
+      {/* Subtle hint — more in dashboard */}
+      <p className="gsap-cta" style={{
+        fontSize: '13px', color: 'rgba(255,255,255,0.35)', fontWeight: 400,
+        marginBottom: '32px', opacity: 0, letterSpacing: '0.3px',
+      }}>
+        More styles &amp; full customization available in your dashboard.
+      </p>
 
       {/* Continue button */}
       <div className="gsap-cta" style={{ width: '100%', maxWidth: '400px', opacity: 0 }}>

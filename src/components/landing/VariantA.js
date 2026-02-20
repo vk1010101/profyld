@@ -1,6 +1,7 @@
 'use client';
 
 import { useLayoutEffect, useRef } from 'react';
+import Footer from '@/components/landing/Footer';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
@@ -239,51 +240,7 @@ export default function VariantA() {
 
       </section>
 
-      {/* Footer */}
-      <footer className={styles.footer}>
-        <div className={styles.footerGrid}>
-          <div className={styles.footerCol}>
-            <div className={styles.logo} style={{ color: '#333', marginBottom: '1rem' }}>profyld.</div>
-            <p style={{ color: '#666', fontSize: '0.9rem', lineHeight: '1.6' }}>
-              Turn your basic resume into a masterpiece. Use our free, ATS-compliant tools to land your dream job.
-            </p>
-          </div>
-
-          <div className={styles.footerCol}>
-            <h4>Product</h4>
-            <div className={styles.footerLinks}>
-              <Link href="/?variant=cv" className={styles.footerLink}>
-                Free CV Builder <span style={{ fontSize: '0.7em', background: '#eef', color: '#55a', padding: '2px 6px', borderRadius: '4px', marginLeft: '4px' }}>ATS</span>
-              </Link>
-              <Link href="/signup" className={styles.footerLink}>Portfolio Builder</Link>
-              {/* <Link href="#" className={styles.footerLink}>Templates</Link> */}
-            </div>
-          </div>
-
-          <div className={styles.footerCol}>
-            <h4>Company</h4>
-            <div className={styles.footerLinks}>
-              <Link href="/pricing" className={styles.footerLink}>Pricing</Link>
-              <Link href="/about" className={styles.footerLink}>About Us</Link>
-              <a href="mailto:support@profyld.com" className={styles.footerLink}>Contact</a>
-            </div>
-          </div>
-
-          <div className={styles.footerCol}>
-            <h4>Legal</h4>
-            <div className={styles.footerLinks}>
-              <Link href="/terms" className={styles.footerLink}>Terms & Conditions</Link>
-              <Link href="/refund-policy" className={styles.footerLink}>Refund Policy</Link>
-              <Link href="/privacy" className={styles.footerLink}>Privacy Policy</Link>
-              <Link href="/cookie-policy" className={styles.footerLink}>Cookie Policy</Link>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.footerCopyright}>
-          &copy; {new Date().getFullYear()} profyld. All rights reserved.
-        </div>
-      </footer>
+      <Footer />
     </main >
   );
 }

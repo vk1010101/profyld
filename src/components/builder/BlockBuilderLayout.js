@@ -5,6 +5,7 @@ import BlockCanvas from './BlockCanvas';
 import BlockEditor from './BlockEditor';
 import styles from './builder.module.css';
 import { Save, Check, AlertCircle, ArrowLeft, X, Monitor, Smartphone, Sun, Moon, ChevronRight, ChevronLeft } from 'lucide-react';
+import { openPortfolio } from '@/lib/utils/portfolio';
 
 const BlockBuilderLayout = ({ isFullscreen = false, onExitFullscreen }) => {
     // ... existing store hooks ...
@@ -240,18 +241,7 @@ const BlockBuilderLayout = ({ isFullscreen = false, onExitFullscreen }) => {
                 {/* View Live Button */}
                 <button
                     className={styles.viewLiveBtn}
-                    onClick={() => {
-                        const protocol = window.location.protocol;
-                        const host = window.location.host;
-                        const rootDomain = host.includes('localhost') ? 'localhost:3000' : 'profyld.com';
-                        // If localhost, we might need to use path for now, OR better: alert user about subdomain setup
-                        // But for production:
-                        if (host.includes('localhost')) {
-                            window.open(`/u/${username}`, '_blank');
-                        } else {
-                            window.open(`${protocol}//${username}.${rootDomain}`, '_blank');
-                        }
-                    }}
+                    onClick={() => openPortfolio(username)}
                 >
                     <Monitor size={14} />
                     View Live

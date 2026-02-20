@@ -30,7 +30,7 @@ export const BlockRegistry = {
             { name: 'title', type: 'text', label: 'Main Headline', placeholder: 'e.g. Alex Reed' },
             { name: 'subtitle', type: 'text', label: 'Subtitle / Role', placeholder: 'e.g. Creative Developer' },
             { name: 'tagline', type: 'text', label: 'Tagline', placeholder: 'e.g. Building digital experiences' },
-            { name: 'backgroundType', type: 'select', label: 'Background', options: ['gradient', 'image', 'color'] },
+            { name: 'backgroundType', type: 'select', label: 'Background', options: ['gradient', 'image', 'color', 'mesh', 'aurora', 'dots', 'waves', 'grain', 'orbs'] },
             { name: 'gradientDirection', type: 'select', label: 'Gradient Direction', options: ['to right', 'to bottom', 'to bottom right', 'to top right', 'to bottom left'] },
             { name: 'gradientColor1', type: 'color', label: 'Gradient Start Color' },
             { name: 'gradientColor2', type: 'color', label: 'Gradient End Color' },

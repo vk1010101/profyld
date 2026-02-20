@@ -1,6 +1,7 @@
 'use client';
 
 import { useLayoutEffect, useRef } from 'react';
+import Footer from '@/components/landing/Footer';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
@@ -196,20 +197,15 @@ export default function VariantC() {
             </section>
 
             {/* FINAL CTA */}
-            <footer className={styles.footer}>
+            <section className={styles.footer} style={{ paddingBottom: '4rem', borderTop: 'none' }}>
                 <div className={styles.footerContent}>
                     <h2 className={styles.revealText}>Ready to launch?</h2>
                     <Link href="/signup" className={styles.finalCta}>
                         Create Portfolio
                     </Link>
-                    <div className={styles.footerLinks}>
-                        <Link href="/terms">Terms</Link>
-                        <Link href="/privacy">Privacy</Link>
-                        <Link href="/pricing">Pricing</Link>
-                    </div>
-                    <p className={styles.copyright}>© 2026 Profyld. All rights reserved.</p>
                 </div>
-            </footer>
+            </section>
+            <Footer />
         </main>
     );
 }
